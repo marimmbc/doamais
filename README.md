@@ -5,8 +5,11 @@
 # Equipe:
 - Mariana Medeiros de Barros Correia
 
-[Link Jira](https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1)
-[Link Figma](https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=cGJXWJcvnYpWctTf-0)
+# Links 
+
+[Jira](https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1)
+
+[Figma](https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=cGJXWJcvnYpWctTf-0)
 
 # Entrega 1
 
