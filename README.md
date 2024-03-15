@@ -8,15 +8,10 @@ DoaMais é uma plataforma que facilita a doação de itens não utilizados, como
 
 ## Acesso Rápido
 
-[![Jira](https://img.shields.io/badge/Jira-Access-blue?logo=jira)](https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1)
-
-
 <div>
 <a href="https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=2Wu8LgHvGCmZlUPZ-0">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"  width="40" height="40"/><img >
 </div>
-
-
 <div>
 <a href="https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg"   width="40" height="40"/><img >
