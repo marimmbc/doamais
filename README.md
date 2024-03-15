@@ -1,4 +1,4 @@
-# DoaMais
+# DoaMais 👕
 
 ## Sobre
 DoaMais é uma plataforma que facilita a doação de itens não utilizados, como roupas, móveis e eletrônicos, conectando doadores a pessoas em necessidade. A iniciativa contribui para a Erradicação da Pobreza (ODS 1).
@@ -6,7 +6,7 @@ DoaMais é uma plataforma que facilita a doação de itens não utilizados, como
 ## Equipe:
 - Mariana Medeiros de Barros Correia
 
-## Acesso Rápido
+## Acesso Rápido 🚀
 
 <div>
   <a href="https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=2Wu8LgHvGCmZlUPZ-0">
@@ -19,7 +19,7 @@ DoaMais é uma plataforma que facilita a doação de itens não utilizados, como
 
 
 
-## Funcionalidades
+## Funcionalidades ⚙️
 
 - Listagem de itens para doação
 - Favoritar itens
