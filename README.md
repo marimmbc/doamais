@@ -14,7 +14,7 @@
 # Entrega 1
 
 - Print do Backlog do Jira
-![Captura de tela 2024-03-14 175705](https://github.com/marimmbc/doamais/assets/84236149/a418371a-c2d4-46cd-8799-7421ca6e65a2)
+
 
 [Screencast Protótipo Lo-Fi ](https://youtu.be/8EqemuuyNWM)
 
