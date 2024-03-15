@@ -31,4 +31,4 @@ DoaMais é uma plataforma que facilita a doação de itens não utilizados, como
 
 - [Screencast Protótipo Lo-Fi](https://youtu.be/8EqemuuyNWM)
 
-![Imagem da Entrega 1](https://github.com/marimmbc/doamais/assets/84236149/b232b626-65b2-41f6-9d06-ce0fdd17fa9a)
+https://github.com/marimmbc/doamais/assets/84236149/b232b626-65b2-41f6-9d06-ce0fdd17fa9a
