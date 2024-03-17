@@ -36,10 +36,11 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 - Backlog do Jira:  
   ![Backlog do Jira](https://github.com/marimmbc/doamais/assets/84236149/7414220f-ed44-404f-acee-920ac30ebad3)
 
-- Quadro do Jira
+- Quadro do Jira:
   ![Quadro do Jira](https://github.com/marimmbc/doamais/assets/84236149/af837613-b376-44bf-9cef-97797373b556)
 
-- Screencast do protótipo Lo-Fi
+- Screencast do protótipo Lo-Fi:
+  
 https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916b26360a8
 
 
