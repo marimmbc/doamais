@@ -39,7 +39,10 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 - Quadro do Jira
   ![Quadro do Jira](https://github.com/marimmbc/doamais/assets/84236149/af837613-b376-44bf-9cef-97797373b556)
 
+- Screencast do protótipo Lo-Fi
+https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916b26360a8
 
-- [Screencast Protótipo Lo-Fi](https://youtu.be/8EqemuuyNWM)
 
-https://github.com/marimmbc/doamais/assets/84236149/b232b626-65b2-41f6-9d06-ce0fdd17fa9a
+
+
+
