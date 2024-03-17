@@ -6,7 +6,7 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 ## Equipe:
 - Mariana Medeiros de Barros Correia
 
-## Acesso Rápido 🚀
+## Links🚀
 
 <div>
   <a href="https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=2Wu8LgHvGCmZlUPZ-0">
