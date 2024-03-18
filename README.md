@@ -3,10 +3,10 @@
 ## ℹ️ Sobre
 DoaMais é uma plataforma projetada para transformar a maneira como lidamos com itens não mais necessários, promovendo a sustentabilidade e o apoio à comunidade. Ao conectar doadores com pessoas em situação de necessidade, facilitamos a doação de itens, contribuindo diretamente para a Erradicação da Pobreza (Objetivo de Desenvolvimento Sustentável - ODS 1). O objetivo é criar uma ponte entre a abundância e a escassez, permitindo que cada item tenha uma nova vida útil e um impacto positivo na sociedade.
 
-## 👥Equipe:
+## 👥 Equipe:
 - Mariana Medeiros de Barros Correia
 
-## 🚀Links
+## 🚀 Links
 
 <div>
   <a href="https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=2Wu8LgHvGCmZlUPZ-0">
@@ -18,7 +18,7 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 </div>
 
 
-## ⚙️Funcionalidades
+## ⚙️ Funcionalidades
 
 - Listagem de itens para doação
 - Favoritar itens
