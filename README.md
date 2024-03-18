@@ -1,7 +1,8 @@
 <p align="center">
   <h1 style="display:inline; vertical-align:middle;">DoaMais</h1>
-  <img src="https://github.com/marimmbc/doamais/assets/84236149/b0e31835-f5ab-4e9c-a8dc-34301197b71b" alt="Logo"  style="vertical-align:middle">
+  <img src="https://github.com/marimmbc/doamais/assets/84236149/311f13a5-c6cc-438a-a06e-2d476f31fdaa" alt="Logo"  style="vertical-align:middle">
 </p>
+
 
 
 
