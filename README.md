@@ -1,4 +1,4 @@
-# DoaMais 👕
+# DoaMais <img src="(https://github.com/marimmbc/doamais/assets/84236149/f142142b-f071-4658-a10f-3698fa355127.png"  width="40" height="40"/>
 
 ## Sobre
 DoaMais é uma plataforma projetada para transformar a maneira como lidamos com itens não mais necessários, promovendo a sustentabilidade e o apoio à comunidade. Ao conectar doadores com pessoas em situação de necessidade, facilitamos a doação de itens, contribuindo diretamente para a Erradicação da Pobreza (Objetivo de Desenvolvimento Sustentável - ODS 1). O objetivo é criar uma ponte entre a abundância e a escassez, permitindo que cada item tenha uma nova vida útil e um impacto positivo na sociedade.
