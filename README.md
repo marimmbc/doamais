@@ -43,7 +43,10 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
   
 https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916b26360a8
 
+#Sketches:
+- Tela Login
+![tela_login](https://github.com/marimmbc/doamais/assets/84236149/1e377d3e-4af2-4def-8fb3-5cb54627bc76)
 
-
-
+- Tela Cadastro
+![tela_cadastro](https://github.com/marimmbc/doamais/assets/84236149/db953c20-bbbd-4afd-a938-b818584b6fce)
 
