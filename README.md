@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/marimmbc/doamais/assets/84236149/eca6acbb-0ef6-47d9-b735-61493ec77332" alt="Logo" width="100" style="vertical-align:middle">
+  <img src="https://github.com/marimmbc/doamais/assets/84236149/eca6acbb-0ef6-47d9-b735-61493ec77332" alt="Logo"  style="vertical-align:middle">
 </p>
 
 
