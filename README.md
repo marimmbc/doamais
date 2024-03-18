@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="https://github.com/marimmbc/doamais/assets/84236149/eca6acbb-0ef6-47d9-b735-61493ec77332" alt="Logo"  style="vertical-align:middle">
+  <h1 style="display:inline; vertical-align:middle;">DoaMais</h1>
+  <img src="https://github.com/marimmbc/doamais/assets/84236149/b0e31835-f5ab-4e9c-a8dc-34301197b71b" alt="Logo"  style="vertical-align:middle">
 </p>
+
 
 
 ## ℹ️ Sobre
