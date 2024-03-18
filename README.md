@@ -1,6 +1,3 @@
-![Doa+_claro_cortado-removebg-preview](https://github.com/marimmbc/doamais/assets/84236149/1afddc1e-9545-49db-a1e2-5b715d052d93)
-
-
 <img src="https://github.com/marimmbc/doamais/assets/84236149/1afddc1e-9545-49db-a1e2-5b715d052d93" width="300" height="100">
 
 ## ℹ️ Sobre
