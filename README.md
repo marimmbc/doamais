@@ -1,12 +1,12 @@
 <img src="https://github.com/marimmbc/doamais/assets/84236149/1afddc1e-9545-49db-a1e2-5b715d052d93" width="300" height="100">
 
-## ℹ️ Sobre
+## ℹ️ Sobre :
 DoaMais é uma plataforma projetada para transformar a maneira como lidamos com itens não mais necessários, promovendo a sustentabilidade e o apoio à comunidade. Ao conectar doadores com pessoas em situação de necessidade, facilitamos a doação de itens, contribuindo diretamente para a Erradicação da Pobreza (Objetivo de Desenvolvimento Sustentável - ODS 1). O objetivo é criar uma ponte entre a abundância e a escassez, permitindo que cada item tenha uma nova vida útil e um impacto positivo na sociedade.
 
-## 👥 Equipe:
-- Mariana Medeiros de Barros Correia
+## 👥 Equipe :
+- Mariana Medeiros de Barros Correia ( mmbc@cesar.school )
 
-## 🚀 Links
+## 🚀 Links :
 
 <div>
   <a href="https://www.figma.com/file/3xpkRtr3yYBWKGcrymAvKm/Doa%2B?type=design&node-id=0-1&mode=design&t=2Wu8LgHvGCmZlUPZ-0">
@@ -18,7 +18,7 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 </div>
 
 
-## ⚙️ Funcionalidades
+## ⚙️ Funcionalidades :
 
 - Listagem de itens para doação
 - Favoritar itens
@@ -31,7 +31,7 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
 - Visualização das informações do doador
 - Visualização da localização aproximada de retirada
 
-## Entrega 1
+# Entrega 1
 
 - Backlog do Jira:  
   
@@ -46,7 +46,7 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
   
 https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916b26360a8
 
-#Sketches:
+## Sketches:
 - Tela Inicial
 ![tela_login](https://github.com/marimmbc/doamais/assets/84236149/1e377d3e-4af2-4def-8fb3-5cb54627bc76)
 
