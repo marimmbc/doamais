@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+  <nav class="nav">
+    <i class="uil uil-bars navOpenBtn" ></i>
+    <a href="#" class="logo"><img src="../static/imagens/logo_doamais.png" alt="Logo Doa Mais" class="navbar-logo"></a>
+
+    <ul class="nav-links">
+      <i class="uil uil-times navCloseBtn"></i>
+      <li><a href="#" onclick="location.href='home.html'">Home</a></li>
+      <li><a href="#">Pesquisar</a></li>
+      <li><a href="#" onclick="location.href='minhas_doações.html'">Minhas Doações</a></li>
+      <li><a href="#">Favoritos</a></li>
+      <li><a href="#" onclick="location.href='perfil.html'">Perfil</a></li>
+      <li><a href="#">Solicitar Item</a></li>
+      <li><a href="#" onclick="location.href='login.html'">Sair</a></li>
+    </ul>
+
+    <div class="search-icon" id="searchIcon">
+      <i class="uil uil-search"></i>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Pesquise aqui" />
+      <i class="uil uil-times"></i>
+    </div>
+  </nav>
+  <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>
