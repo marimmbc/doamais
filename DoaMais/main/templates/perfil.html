@@ -40,5 +40,14 @@
     </div>
     
     <script src="../static/js/loadNavbar.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const requestedItemsBtn = document.getElementById("requested-items");
+            requestedItemsBtn.addEventListener("click", function() {
+                window.location.href = "itens_solicitados.html"; // Redireciona para a página desejada
+            });
+        });
+    </script>
 </body>
 </html>
