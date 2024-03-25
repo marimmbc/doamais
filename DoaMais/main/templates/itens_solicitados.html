@@ -10,11 +10,46 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+  <div id="navbar-placeholder"></div>
 
+  <header>
+    <h1>Itens Solicitados</h1>
+  </header>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Imagem</th>
+        <th>Item</th>
+        <th>Categoria</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Repeat the row below for each item. Example for one item: -->
+      <tr>
+        <td><img src="..\imagens\imagem_itemtabela.png" alt="Item Image" class="item-image"></td>
+        <td>Nome do Item</td>
+        <td>Categoria do Item</td>
+        <td>Estado de Conservação</td>
+      </tr>
+      <!-- Additional rows go here -->
+    </tbody>
+  </table>
 
-    
-    <script src="../static/js/loadNavbar.js"></script>
+  <div class="button-container">
+    <button type="button" id="request-new-item">Solicitar Novo Item</button>
+  </div>
+
+  <script src="../static/js/loadNavbar.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const requestNewItemBtn = document.getElementById("request-new-item");
+        requestNewItemBtn.addEventListener("click", function() {
+            window.location.href = "solicitar_item.html"; // Redireciona para a página desejada
+        });
+    });
+  </script>
 </body>
 </html>

@@ -11,10 +11,52 @@
 </head>
 <body>
     <div id="navbar-placeholder"></div>
+    <div class="request-item-container">
+        <div class="form-container">
+          <form id="itemRequestForm">
+            <div class="row">
+              <div class="image-upload-container">
+                <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+              </div>
+              <div class="input-group">
+                <label for="title">Título do Item:</label>
+                <input type="text" id="title" name="title" placeholder="Insira o título do item">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-group">
+                <label for="category">Categoria:</label>
+                <select id="category" name="category">
+                  <option value="">Selecione uma opção</option>
+                  <option value="roupa">Roupa</option>
+                  <option value="movel">Móvel</option>
+                  <option value="eletronico">Eletrônico</option>
+                  <option value="brinquedo">Brinquedo</option>
+                  <option value="livro">Livro</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="condition">Estado de Conservação:</label>
+                <select id="condition" name="condition">
+                  <option value="">Selecione uma opção</option>
+                  <option value="novo">Novo</option>
+                  <option value="usadoBom">Usado - Bom</option>
+                  <option value="usadoAceitavel">Usado - Aceitável</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group full-width">
+              <label for="description">Descrição:</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="buttons-container">
+              <button type="submit">Concluir</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-
-
-    
     <script src="../static/js/loadNavbar.js"></script>
+    
 </body>
 </html>
