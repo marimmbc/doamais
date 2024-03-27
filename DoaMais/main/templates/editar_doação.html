@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Doação</title>
+  <link rel="stylesheet" href="../static/css/editar_doação.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="request-item-container">
+        <div class="form-container">
+          <form id="itemRequestForm">
+            <div class="row">
+              <div class="image-upload-container">
+                <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+              </div>
+              <div class="input-group">
+                <label for="title">Título do Item:</label>
+                <input type="text" id="title" name="title" placeholder="Insira o título do item">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-group">
+                <label for="category">Categoria:</label>
+                <select id="category" name="category">
+                  <option value="">Selecione uma opção</option>
+                  <option value="roupa">Roupa</option>
+                  <option value="movel">Móvel</option>
+                  <option value="eletronico">Eletrônico</option>
+                  <option value="brinquedo">Brinquedo</option>
+                  <option value="livro">Livro</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="condition">Estado de Conservação:</label>
+                <select id="condition" name="condition">
+                  <option value="">Selecione uma opção</option>
+                  <option value="novo">Novo</option>
+                  <option value="usadoBom">Usado - Bom</option>
+                  <option value="usadoAceitavel">Usado - Aceitável</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group full-width">
+              <label for="description">Descrição:</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="buttons">
+              <button type="button"onclick="location.href='minhas_doações.html'">Cancelar</button>
+              <button type="submit" onclick="location.href='minhas_doações.html'">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    <script src="../static/js/loadNavbar.js"></script>
+    
+</body>
+</html>

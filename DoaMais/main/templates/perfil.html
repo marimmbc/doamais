@@ -45,7 +45,12 @@
         document.addEventListener("DOMContentLoaded", function() {
             const requestedItemsBtn = document.getElementById("requested-items");
             requestedItemsBtn.addEventListener("click", function() {
-                window.location.href = "itens_solicitados.html"; // Redireciona para a página desejada
+                window.location.href = "itens_solicitados.html";
+            });
+        
+            const editProfileBtn = document.getElementById("edit-profile");
+            editProfileBtn.addEventListener("click", function() {
+                window.location.href = "editar_perfil.html";
             });
         });
     </script>

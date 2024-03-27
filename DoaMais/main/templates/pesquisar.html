@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesquisar</title>
+  <link rel="stylesheet" href="../static/css/pesquisar.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <div class="form-container">
+        <div class="row">
+          <div class="input-group">
+            <label for="title">Nome do Item:</label>
+            <input type="text" id="title" name="title" placeholder="Insira o nome do item">
+          </div>
+          <div class="input-group">
+            <label for="category">Categoria:</label>
+            <select id="category" name="category">
+              <option value="">---</option>
+              <option value="roupa">Roupa</option>
+              <option value="movel">Móvel</option>
+              <option value="eletronico">Eletrônico</option>
+              <option value="brinquedo">Brinquedo</option>
+              <option value="livro">Livro</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="condition">Estado de Conservação:</label>
+            <select id="condition" name="condition">
+              <option value="">---</option>
+              <option value="novo">Novo</option>
+              <option value="usadoBom">Usado - Bom</option>
+              <option value="usadoAceitavel">Usado - Aceitável</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <button type="button" id="search">Pesquisar</button>
+          </div>
+        </div>
+      </div>
+
+    <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>

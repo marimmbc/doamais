@@ -20,11 +20,11 @@
             <div class="input-group">
                 <div class="input-field">
                     <label>Nome</label>
-                    <input type="text" id="nome" placeholder="Digite seu nome">
+                    <input type="text" id="username" placeholder="Digite seu nome">
                 </div>
                 <div class="input-field">
                     <label>Sobrenome</label>
-                    <input type="text" id="sobrenome" placeholder="Digite seu sobrenome">
+                    <input type="text" id="surname" placeholder="Digite seu sobrenome">
                 </div>
             </div>
             <div class="input-group">
@@ -55,9 +55,10 @@
     </div>
     <script>
         document.querySelector('.registration-form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            window.location.href = 'home.html'; 
+            event.preventDefault();
+            window.location.href = 'pesquisar.html'; // Redirect to the pesquisar.html page
         });
     </script>
+    
 </body>
 </html>
