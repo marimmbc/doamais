@@ -9,20 +9,21 @@
 </head>
 <body>
 
-<div class="login-container">
-    <form class="login-form">
-        <div class="input-group">
-            <label for="username">Usuário</label>
-            <input type="text" id="username" name="username" placeholder="@example">
-        </div>
-        <div class="input-group">
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" placeholder="* * * * * *">
-        </div>
-        <button class="login-btn" type="button" onclick="location.href='pesquisar.html'">Entrar</button>
-        <button class="back-btn" onclick="location.href='login.html'">Voltar</button>
-    </form>
-</div>
-
+    <div class="login-container">
+        <form class="login-form" action="{% url 'entrar' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" placeholder="@example">
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="* * * * * *">
+            </div>
+            <button class="login-btn" type="submit">Entrar</button>
+            <button type="button" class="back-btn" onclick="history.back()">Voltar</button>
+        </form>
+    </div>
+    
 </body>
 </html>

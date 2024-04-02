@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-  <div id="navbar-placeholder"></div>
+  {% include 'navbar.html' %}
 
   <header>
     <h1>Itens Solicitados</h1>
@@ -26,14 +26,14 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Repeat the row below for each item. Example for one item: -->
+      {% for doacao in doacoes %}
       <tr onclick="window.location.href = 'editar_doação.html';">
-        <td><img src="../imagens/imagem_itemtabela.png" alt="Item Image" class="item-image"></td>
-        <td>Nome do Item</td>
-        <td>Categoria do Item</td>
-        <td>Estado de Conservação</td>
+        <td><img src="{{ doacao.image.url }}" alt="Imagem do Item" class="item-image"></td>
+        <td>{{ doacao.item_name }}</td>
+        <td>{{ doacao.category }}</td>
+        <td>{{ doacao.get_condition_display }}</td>
       </tr>
-      <!-- Additional rows go here -->
+      {% endfor %}
     </tbody>
   </table>
 

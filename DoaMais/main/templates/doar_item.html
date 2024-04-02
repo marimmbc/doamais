@@ -10,17 +10,18 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+  {% include 'navbar.html' %}
     <div class="request-item-container">
         <div class="form-container">
-          <form id="itemRequestForm">
+          <form id="donationForm" method="POST" action="{% url 'doar_item' %}" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row">
               <div class="image-upload-container">
-                <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                <input type="file" id="image" name="image" accept="image/*">
               </div>
               <div class="input-group">
-                <label for="title">Título do Item:</label>
-                <input type="text" id="title" name="title" placeholder="Insira o título do item">
+                <label for="item_name">Título do Item:</label>
+                <input type="text" id="item_name" name="item_name" placeholder="Insira o título do item">
               </div>
             </div>
             <div class="row">
@@ -28,26 +29,26 @@
                 <label for="category">Categoria:</label>
                 <select id="category" name="category">
                   <option value="">Selecione uma opção</option>
-                  <option value="roupa">Roupa</option>
-                  <option value="movel">Móvel</option>
-                  <option value="eletronico">Eletrônico</option>
-                  <option value="brinquedo">Brinquedo</option>
-                  <option value="livro">Livro</option>
+                  <option value="clothes">Roupas</option>
+                  <option value="furniture">Móveis</option>
+                  <option value="electronics">Eletrônicos</option>
+                  <option value="toys">Brinquedos</option>
+                  <option value="books">Livros</option>
                 </select>
               </div>
               <div class="input-group">
                 <label for="condition">Estado de Conservação:</label>
                 <select id="condition" name="condition">
                   <option value="">Selecione uma opção</option>
-                  <option value="novo">Novo</option>
-                  <option value="usadoBom">Usado - Bom</option>
-                  <option value="usadoAceitavel">Usado - Aceitável</option>
+                  <option value="new">Novo</option>
+                  <option value="used_good">Usado - Bom</option>
+                  <option value="used_acceptable">Usado - Aceitável</option>
                 </select>
               </div>
             </div>
             <div class="input-group full-width">
               <label for="description">Descrição:</label>
-              <textarea id="description" name="description"></textarea>
+              <textarea id="description" name="description" placeholder="Descreva o item"></textarea>
             </div>
             <div class="buttons-container">
               <button type="submit">Concluir</button>

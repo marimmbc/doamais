@@ -10,38 +10,53 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+    {% include 'navbar.html' %}
     <div class="form-container">
-        <div class="row">
-          <div class="input-group">
-            <label for="title">Nome do Item:</label>
-            <input type="text" id="title" name="title" placeholder="Insira o nome do item">
-          </div>
-          <div class="input-group">
-            <label for="category">Categoria:</label>
-            <select id="category" name="category">
-              <option value="">---</option>
-              <option value="roupa">Roupa</option>
-              <option value="movel">Móvel</option>
-              <option value="eletronico">Eletrônico</option>
-              <option value="brinquedo">Brinquedo</option>
-              <option value="livro">Livro</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="condition">Estado de Conservação:</label>
-            <select id="condition" name="condition">
-              <option value="">---</option>
-              <option value="novo">Novo</option>
-              <option value="usadoBom">Usado - Bom</option>
-              <option value="usadoAceitavel">Usado - Aceitável</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <button type="button" id="search">Pesquisar</button>
-          </div>
+        <form action="{% url 'pesquisa' %}" method="GET">
+            <div class="row">
+                <div class="input-group">
+                    <label for="title">Nome do Item:</label>
+                    <input type="text" id="title" name="title" placeholder="Insira o nome do item">
+                </div>
+                <div class="input-group">
+                    <label for="category">Categoria:</label>
+                    <select id="category" name="category">
+                        <option value="">---</option>
+                        <option value="clothes">Roupas</option>
+                        <option value="furniture">Móveis</option>
+                        <option value="electronics">Eletrônicos</option>
+                        <option value="toys">Brinquedos</option>
+                        <option value="books">Livros</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="condition">Estado de Conservação:</label>
+                    <select id="condition" name="condition">
+                        <option value="">---</option>
+                        <option value="new">Novo</option>
+                        <option value="used_good">Usado - Bom</option>
+                        <option value="used_acceptable">Usado - Aceitável</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button type="submit" id="search">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="search-results">
+        {% for item in resultados %}
+        <div class="search-item">
+            <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+            <div>
+                <p><strong>Nome:</strong> {{ item.item_name }}</p>
+                <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
+                <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+            </div>
         </div>
-      </div>
+        {% endfor %}
+    </div>
 
     <script src="../static/js/loadNavbar.js"></script>
 </body>

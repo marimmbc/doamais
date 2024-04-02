@@ -78,8 +78,8 @@ class Doacao(models.Model):
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     CONDITION_CHOICES = [
         ('new', 'Novo'),
-        ('used', 'Usado'),
-        ('worn', 'Desgastado'),
+        ('used_good', 'Usado - Bom'),
+        ('used_acceptable', 'Usado - Aceitável'),
     ]
     condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
 

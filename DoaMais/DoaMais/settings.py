@@ -41,7 +41,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'main' / 'templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,4 +56,6 @@ TEMPLATES = [
 ]
 
 STATIC_URL = '/static/'
+
+ROOT_URLCONF = 'DoaMais.urls'
 
