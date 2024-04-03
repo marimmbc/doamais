@@ -14,13 +14,25 @@
     <a href="#" class="logo"><img src="../static/imagens/logo_doamais.png" alt="Logo Doa Mais" class="navbar-logo"></a>
 
     <ul class="nav-links">
-      <i class="uil uil-times navCloseBtn"></i>
-      <li><a href="#" onclick="location.href='{% url 'pesquisar' %}'">Pesquisar</a></li> 
-      <li><a href="#" onclick="location.href='{% url 'minhas_doações' %}'">Minhas Doações</a></li>
-      <!-- <li><a href="#">Favoritos</a></li> -->
-      <li><a href="#" onclick="location.href='{% url 'perfil' %}'">Perfil</a></li>
-      <li><a href="#" onclick="location.href='{% url 'solicitar_item' %}'">Solicitar Item</a></li>
-      <li><a href="#" onclick="location.href='{% url 'login' %}'">Sair</a></li>
+      <i class="uil uil-times navCloseBtn"></i> 
+      <li>
+        <a href="{% url 'pesquisar' %}" class="button-like-link">Pesquisar</a>
+      </li>
+      <li>
+        <a href="{% url 'minhas_doacoes' %}" class="button-like-link">Minhas Doações</a>
+      </li>
+      <li>
+        <a href="{% url 'perfil' %}" class="button-like-link">Perfil</a>
+      </li>
+      <li>
+        <a href="{% url 'solicitar_item' %}" class="button-like-link">Solicitar Item</a>
+      </li>
+      <li>
+        <form action="{% url 'logout' %}" method="post" class="button-like-link">
+            {% csrf_token %}
+            <button type="submit" class="button-like-link">Sair</button>
+        </form>
+      </li>
     </ul>
 
   </nav>

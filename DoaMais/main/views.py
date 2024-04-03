@@ -3,11 +3,11 @@ from .models import Doacao, SolicitarItem, User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.views import LogoutView
 
 
-
-def login(request):
-    return render(request, 'login.html')
+def inicio(request):
+    return render(request, 'inicio.html')
 
 def cadastrar(request):
     if request.method == 'POST':
@@ -43,20 +43,20 @@ def cadastrar(request):
 
    
 
-def entrar(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
-            login(request, user)
-            return redirect('nome_da_url_após_login')
+            login(request, user)  # Isto agora chama a função de login do Django corretamente
+            return redirect('pesquisar')
         else:
             # Retornar erro de login inválido
-            return render(request, 'entrar.html', {'error': 'Usuário ou senha inválidos'})
+            return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
 
-    return render(request, 'entrar.html')
+    return render(request, 'login.html')
 
 @login_required
 def perfil(request):
@@ -82,7 +82,7 @@ def editar_perfil(request):
 
     return render(request, 'editar_perfil.html', {'user': user})
 
-
+@login_required
 def pesquisar(request):
     query = request.GET.get('title')
     category = request.GET.get('category')
@@ -118,6 +118,7 @@ def solicitar_item(request):
 
     return render(request, 'solicitar_item.html')
 
+@login_required
 def itens_solicitados(request):
     itens = SolicitarItem.objects.all()  # Recupera todos os itens solicitados
     return render(request, 'itens_solicitados.html', {'itens': itens})
@@ -137,10 +138,11 @@ def doar_item(request):
     return render(request, 'doar_item.html')
 
 @login_required
-def minhas_doações(request):
+def minhas_doacoes(request):
     doacoes = Doacao.objects.all()  # Recupera todas as doações
-    return render(request, 'minhas_doações.html', {'doacoes': doacoes})
+    return render(request, 'minhas_doacoes.html', {'doacoes': doacoes})
 
+@login_required
 def editar_doação(request, doacao_id):
     doacao = get_object_or_404(Doacao, id=doacao_id)
 
@@ -158,3 +160,7 @@ def editar_doação(request, doacao_id):
 
     return render(request, 'editar_doação.html', {'doacao': doacao})
     return render(request, 'editar_doação.html')
+
+class LogoutWithGet(LogoutView):
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

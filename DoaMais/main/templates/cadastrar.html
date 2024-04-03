@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="../static/css/cadastrar.css">
 </head>
 <body>
-    <div class="registration-container">
-        <div class="registration-header">
-            <h1>Cadastro</h1>
-        </div>
         <div class="registration-container">
             <div class="registration-header">
                 <h1>Cadastro</h1>
             </div>
-            <form class="registration-form" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+                <form class="registration-form" action="{% url 'cadastrar' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="input-field photo-upload">
                     <label for="photo">Adicionar Foto</label>
