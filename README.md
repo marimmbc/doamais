@@ -95,3 +95,6 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 ![tela_editardoações](https://github.com/marimmbc/doamais/assets/84236149/bfaddb17-2a51-489c-85d5-d7f8a8297e62)
 
 ![tela_editareditaritem](https://github.com/marimmbc/doamais/assets/84236149/8b17c86b-bb42-48ce-9cb7-77dae0cce192)
+
+
+# Entrega 2
