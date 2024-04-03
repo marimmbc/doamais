@@ -89,12 +89,12 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 ![tela_itemdoação3](https://github.com/marimmbc/doamais/assets/84236149/7a5cc5d5-6073-4e7c-824a-b017227e23ee)
 
-
-
-# Entrega 2
 ![tela_itemdoação2](https://github.com/marimmbc/doamais/assets/84236149/f20d0555-b401-402b-9513-2ccd771700dc)
 
 - Tela Editar Itens Doados
 ![tela_editardoações](https://github.com/marimmbc/doamais/assets/84236149/bfaddb17-2a51-489c-85d5-d7f8a8297e62)
 
 ![tela_editareditaritem](https://github.com/marimmbc/doamais/assets/84236149/8b17c86b-bb42-48ce-9cb7-77dae0cce192)
+
+
+# Entrega 2
