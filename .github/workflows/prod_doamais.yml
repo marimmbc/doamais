@@ -33,7 +33,6 @@ jobs:
       - name: Cleaning testing files
         run: |
           cd DoaMais/
-          rm db.sqlite3
           rm .env
           cd ..
         
