@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.welcome-container {
+  text-align: center;
+}
+
+.welcome-container h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+button {
+  display: block;
+  margin: 20px auto; /* Aumentado para dar mais espaço ao redor do botão */
+  padding: 15px 30px; /* Mais padding para aumentar o tamanho do botão */
+  font-size: 1.2em; /* Tamanho de fonte maior para facilitar a leitura */
+  color: white;
+  background-color: #6c757d;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 200px; /* Largura maior para um botão mais amplo */
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #5a6268;
+}
