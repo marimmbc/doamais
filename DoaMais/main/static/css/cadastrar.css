@@ -1,0 +1,155 @@
+/* Importação da fonte Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+/* Reset básico para remover margens, padding e definir a fonte padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo do corpo da página */
+body {
+    min-height: 100vh; /* Altura mínima de 100% da janela de visualização */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    background: #ECEFF1; /* Cor de fundo da página */
+}
+
+/* Estilo do container de registro */
+.registration-container {
+    position: relative;
+    max-width: 45%; /* Largura máxima do container */
+    width: 40%; /* Largura base do container */
+    border-radius: 6px; /* Arredondamento das bordas */
+    padding: 30px; /* Espaçamento interno */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    background-color: #fff; /* Cor de fundo do container */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* Sombra do container */
+}
+
+/* Estilo do cabeçalho do formulário de registro */
+.registration-header h1 {
+    position: relative;
+    font-size: 24px; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte */
+    color: #333; /* Cor da fonte */
+    text-align: center; /* Alinhamento do texto */
+    margin-bottom: 2rem; /* Margem abaixo do título */
+}
+
+/* Estilo da linha abaixo do título */
+.registration-header h1::before {
+    content: "";
+    position: absolute;
+    left: 50%; /* Posicionamento horizontal */
+    bottom: -10px; /* Posicionamento vertical */
+    transform: translateX(-50%); /* Centraliza o elemento */
+    height: 3px; /* Altura da linha */
+    width: 50px; /* Largura da linha */
+    border-radius: 8px; /* Arredondamento das bordas da linha */
+    background-color: #2e2e2e; /* Cor da linha */
+}
+
+/* Agrupa campos de formulário para layout flexível */
+.registration-form .input-group {
+    display: flex;
+    flex-wrap: wrap; /* Permite a quebra de linha dos itens */
+    justify-content: space-between; /* Espaçamento entre os elementos */
+    margin-bottom: 1rem; /* Margem abaixo do grupo */
+}
+
+/* Estilo dos campos de entrada */
+.input-field {
+    flex-basis: calc(50% - 10px); /* Largura dos campos, ajustando o espaço entre eles */
+    margin-bottom: 1rem; /* Margem abaixo de cada campo */
+}
+
+/* Espaçamento entre campos na mesma linha */
+.input-group > .input-field:not(:last-child) {
+    margin-right: 20px; /* Margem à direita para separar os campos */
+}
+
+/* Estilo das labels dos campos */
+.input-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2e2e2e;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo das entradas e seleções */
+.input-field input,
+.input-field select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo ao focar nos campos de entrada */
+.input-field input:focus,
+.input-field select:focus {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13); /* Sombra ao focar */
+}
+
+/* Estilo dos botões do formulário */
+.form-buttons {
+    display: flex;
+    justify-content: space-between; /* Separa os botões */
+    margin-top: 1rem; /* Margem acima dos botões */
+}
+
+.form-buttons button {
+    background-color: #aaa; /* Cor de fundo dos botões */
+    color: black; /* Cor do texto dos botões */
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer; /* Cursor em forma de ponteiro */
+    width: 48%; /* Largura dos botões */
+    border-radius: 10px; /* Arredondamento das bordas dos botões */
+}
+
+.form-buttons button:hover {
+    background-color: #888; /* Cor de fundo ao passar o mouse */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .registration-form .input-group {
+        flex-direction: column; /* Empilha os campos verticalmente */
+    }
+
+    .input-field {
+        flex-basis: 100%; /* Campos ocupam toda a largura */
+    }
+
+    .input-group > .input-field:not(:last-child) {
+        margin-right: 0; /* Remove a margem direita */
+    }
+
+    .form-buttons button {
+        width: 100%; /* Botões ocupam toda a largura */
+        margin-bottom: 1rem; /* Margem abaixo dos botões */
+    }
+}
+
+/* Estilo da seção de upload de foto */
+.photo-upload {
+    margin-bottom: 1rem; /* Margem abaixo da seção */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+/* Estilo do botão de upload de foto */
+.photo-upload input {
+    display: block;
+    margin: 0 auto; /* Centraliza o botão */
+}

@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #f8f9fa;
+  padding: 100px 20px 20px;
+  overflow: auto;
+}
+
+header{
+  text-align: center;
+  margin-bottom: 50px;
+  margin-left: auto; /* Automatically margins center the block element */
+  margin-right: auto;
+  width: 80%; /* You may adjust this to set your desired width */
+}
+
+table {
+  width: 80%; /* Smaller width for the table */
+  border-collapse: collapse;
+  margin: 50px auto 20px; /* Top margin, auto horizontally for centering, and bottom margin */
+}
+
+table, th, td {
+  border: 1px solid #dee2e6;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #e9ecef;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.item-image {
+    width: 80px; /* Increased size */
+    height: 80px; /* Increased size */
+    object-fit: cover; /* Ensure the images cover the area without distorting */
+  }
+
+.button-container {
+  text-align: center;
+}
+
+#donate-new-item {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #aaa;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#donate-new-item:hover {
+  background-color: #888;
+}

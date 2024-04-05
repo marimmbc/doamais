@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ECEFF1; /* Background color of body */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; /* Diminuir a largura do container */
+    max-width: 25%; /* Ajustar o tamanho máximo */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%; /* Diminuir a largura dos inputs */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 16px; /* Aumentar o tamanho da fonte */
+    font-weight: 500;
+    color: #2e2e2e;
+    margin-bottom: 10px; /* Aumentar espaço abaixo do rótulo */
+}
+
+.input-group input {
+    padding: 15px; /* Aumentar a altura do input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px; /* Aumentar o tamanho da fonte do input */
+    color: #333;
+    width: 100%; /* Manter a largura completa */
+    background-color: #fff;
+}
+
+.login-btn, .back-btn {
+    background-color: #6c757d; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none;
+    padding: 15px 25px; /* Aumentar o preenchimento para tornar os botões maiores */
+    margin-top: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    width: 100%; /* Manter a largura completa */
+    font-size: 18px; /* Aumentar o tamanho da fonte dos botões */
+}
+
+button:hover {
+    background-color: #5a6268; /* Cor do hover do botão */
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 95%; /* Ajustar a largura em telas menores */
+    }
+}
