@@ -116,3 +116,5 @@ else:
     }
     
 # Application definition
+
+CSRF_TRUSTED_ORIGINS = ['https://doamais.azurewebsites.net/']
