@@ -24,16 +24,19 @@
                 <p class="username">{{ user.username }}</p>
                 <p class="email">{{ user.email }}</p>
                 <p class="location">{{ user.location }}</p>
+                <div class="preferences">
+                    <h3>Preferências</h3>
+                    <ul>
+                        {% if user.roupa %}<li>Roupa</li>{% endif %}
+                        {% if user.eletronico %}<li>Eletrônico</li>{% endif %}
+                        {% if user.movel %}<li>Móvel</li>{% endif %}
+                        {% if user.livro %}<li>Livro</li>{% endif %}
+                        {% if user.brinquedo %}<li>Brinquedo</li>{% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
     
-        <div class="preferences">
-            <h3>Categorias de Preferência</h3>
-            <ul>
-                <li>Roupa</li>
-                <li>Eletrônico</li>
-            </ul>
-        </div>
     
         <div class="buttons">
             <button type="button" id="requested-items">Itens Solicitados</button>

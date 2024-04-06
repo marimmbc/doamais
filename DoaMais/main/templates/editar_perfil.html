@@ -38,17 +38,31 @@
             
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="{{ user.email }}">
-  
+                
                 <div class="preferences">
-                    <h3>Categorias de Preferência</h3>
-                    <label><input type="checkbox" name="preference" value="roupa"> Roupa</label>
-                    <label><input type="checkbox" name="preference" value="movel"> Móvel</label>
-                    <label><input type="checkbox" name="preference" value="eletronico"> Eletrônico</label>
-                    <label><input type="checkbox" name="preference" value="livro"> Livro</label>
-                    <label><input type="checkbox" name="preference" value="material_escolar"> Material Escolar</label>
-                  </div>
-                  
-  
+                    <h3>Preferências</h3>
+                    <label>
+                        <input type="checkbox" name="roupa" {% if user.roupa %} checked {% endif %}>
+                        Roupa
+                    </label>
+                    <label>
+                        <input type="checkbox" name="eletronico" {% if user.eletronico %} checked {% endif %}>
+                        Eletrônico
+                    </label>
+                    <label>
+                        <input type="checkbox" name="movel" {% if user.movel %} checked {% endif %}>
+                        Móvel
+                    </label>
+                    <label>
+                        <input type="checkbox" name="livro" {% if user.livro %} checked {% endif %}>
+                        Livro
+                    </label>
+                    <label>
+                        <input type="checkbox" name="material_escolar" {% if user.material_escolar %} checked {% endif %}>
+                        Material Escolar
+                    </label>
+                </div>
+                
                 <div class="buttons">
                     <button type="button" id="cancel">Cancelar</button>
                     <button type="submit" id="save">Salvar</button>

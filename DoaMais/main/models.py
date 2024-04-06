@@ -24,15 +24,18 @@ class SolicitarItem(models.Model):
         return self.title    
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, **extra_fields):
+    def create_user(self, email, username, password=None, first_name=None, last_name=None, location=None, **extra_fields):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError('The given email must be set')
         if not username:
-            raise ValueError('Users must have a username')
+            raise ValueError('The given username must be set')
 
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            first_name=first_name,
+            last_name=last_name,
+            location=location,
             **extra_fields
         )
 
@@ -56,10 +59,15 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    roupa = models.BooleanField(default=False)
+    movel = models.BooleanField(default=False)
+    eletronico = models.BooleanField(default=False)
+    brinquedo = models.BooleanField(default=False)
+    livro = models.BooleanField(default=False)
     objects = MyUserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
@@ -69,11 +77,11 @@ class Doacao(models.Model):
     item_name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='donations_images/', blank=True, null=True)
     CATEGORY_CHOICES = [
-        ('clothes', 'Roupas'),
-        ('furniture', 'Móveis'),
-        ('electronics', 'Eletrônicos'),
-        ('toys', 'Brinquedos'),
-        ('books', 'Livros'),
+        ('clothes', 'Roupa'),
+        ('furniture', 'Móvel'),
+        ('electronics', 'Eletrônico'),
+        ('toy', 'Brinquedo'),
+        ('book', 'Livro'),
     ]
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     CONDITION_CHOICES = [

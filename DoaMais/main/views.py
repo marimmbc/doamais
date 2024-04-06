@@ -34,7 +34,7 @@ def cadastrar(request):
 
         user.save()
         # Make sure 'some_success_url_name' is the name of the url you want to redirect to after a successful registration
-        return redirect('some_success_url_name')  
+        return redirect('pesquisar')  
     else:
         # GET request: just show the registration form.
         return render(request, 'cadastrar.html')  # Replace with your registration form template name
@@ -50,10 +50,9 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
-            login(request, user)  # Isto agora chama a função de login do Django corretamente
+            login(request, user)
             return redirect('pesquisar')
         else:
-            # Retornar erro de login inválido
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
 
     return render(request, 'login.html')
@@ -78,7 +77,7 @@ def editar_perfil(request):
             user.photo = request.FILES['photo']
 
         user.save()
-        return redirect('nome_da_url_para_perfil')  # Redirecione para a página do perfil ou outra página conforme necessário
+        return redirect('perfil')  # Redirecione para a página do perfil ou outra página conforme necessário
 
     return render(request, 'editar_perfil.html', {'user': user})
 
