@@ -1,61 +1,65 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Doacao, SolicitarItem, User
+from django import forms
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LogoutView
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .models import Doacao, SolicitarItem, User
 
 def inicio(request):
     return render(request, 'inicio.html')
 
 def cadastrar(request):
     if request.method == 'POST':
-        # Your form processing logic...
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        location = request.POST.get('location')
-        photo = request.FILES.get('photo')
+        form = UserCreationForm(request.POST, request.FILES)
 
-        user = User(
-            first_name=first_name,
-            last_name=last_name,
-            username=username,
-            email=email,
-            location=location,
-            password=make_password(password)
-        )
+        if form.is_valid():
+            user = form.save()  # Isso automaticamente criptografa a senha
+            if 'photo' in request.FILES:
+                user.photo = request.FILES['photo']
+                user.save()
 
-        if photo:
-            user.photo = photo
+            # Você pode adicionar mais campos ao usuário aqui se necessário
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.email = form.cleaned_data.get('email')
+            user.location = form.cleaned_data.get('location')
+            user.save()
 
-        user.save()
-        # Make sure 'some_success_url_name' is the name of the url you want to redirect to after a successful registration
-        return redirect('pesquisar')  
+            login(request, user)
+            messages.success(request, 'Registration successful.')
+            return redirect('pesquisar')
+        else:
+            messages.error(request, 'Unsuccessful registration. Invalid information.')
     else:
-        # GET request: just show the registration form.
-        return render(request, 'cadastrar.html')  # Replace with your registration form template name
+        form = UserCreationForm()
+
+    return render(request, 'cadastrar.html', {'form': form})
 
 # No other return statement needed outside the if/else block.
 
-   
-
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            login(request, user)
-            return redirect('pesquisar')
-        else:
-            return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
+        form = AuthenticationForm(request, data=request.POST)
 
-    return render(request, 'login.html')
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                messages.info(request, f'You are now logged in as {username}.')
+                return redirect('pesquisar')
+            else:
+                messages.error(request, 'Invalid username or password.')
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'accounts/login.html', {'form': form})
 
 @login_required
 def perfil(request):
