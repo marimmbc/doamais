@@ -61,8 +61,6 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     location = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
 
     roupa = models.BooleanField(default=False)
     movel = models.BooleanField(default=False)
@@ -99,3 +97,14 @@ class Doacao(models.Model):
 
     def __str__(self):
         return f"{self.item_name} - {self.category}"
+
+class CustomUserCreationForm(UserCreationForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    location = forms.CharField(required=True)
+    photo = forms.ImageField(required=False)
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email', 'location', 'photo',)

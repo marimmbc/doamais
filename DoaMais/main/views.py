@@ -1,45 +1,37 @@
-from django import forms
-from django.contrib import messages
+from django import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Doacao, SolicitarItem, User
+from .models import Doacao, SolicitarItem, User, CustomUserCreationForm
 
 def inicio(request):
     return render(request, 'inicio.html')
 
 def cadastrar(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST, request.FILES)
-
+        form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save()  # Isso automaticamente criptografa a senha
-            if 'photo' in request.FILES:
-                user.photo = request.FILES['photo']
-                user.save()
-
-            # Você pode adicionar mais campos ao usuário aqui se necessário
+            user = form.save(commit=False)  # Salva o usuário, mas não o commita ainda ao banco de dados
+            user.photo = form.cleaned_data.get('photo')
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.email = form.cleaned_data.get('email')
             user.location = form.cleaned_data.get('location')
-            user.save()
+            user.save()  # Agora sim, salva todas as informações no banco de dados
 
             login(request, user)
-            messages.success(request, 'Registration successful.')
+            messages.success(request, ' Registration successful.')
             return redirect('pesquisar')
         else:
-            messages.error(request, 'Unsuccessful registration. Invalid information.')
+            messages.error(request, ' Unsuccessful registration.')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, 'cadastrar.html', {'form': form})
 
-# No other return statement needed outside the if/else block.
 
 def login_view(request):
     if request.method == 'POST':
