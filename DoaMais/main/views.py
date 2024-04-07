@@ -57,13 +57,13 @@ def editar_perfil(request):
         user.last_name = request.POST.get('last_name')
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
-        # Atualize outros campos conforme necessário
+       
 
         if 'photo' in request.FILES:
             user.photo = request.FILES['photo']
 
         user.save()
-        return redirect('perfil')  # Redirecione para a página do perfil ou outra página conforme necessário
+        return redirect('perfil')  
 
     return render(request, 'editar_perfil.html', {'user': user})
 
@@ -99,13 +99,13 @@ def solicitar_item(request):
         )
         novo_item.save()
 
-        return redirect('itens_solicitados')  # Redireciona para a página de itens solicitados após o cadastro
+        return redirect('itens_solicitados')  
 
     return render(request, 'solicitar_item.html')
 
 @login_required
 def itens_solicitados(request):
-    itens = SolicitarItem.objects.all()  # Recupera todos os itens solicitados
+    itens = SolicitarItem.objects.all()  
     return render(request, 'itens_solicitados.html', {'itens': itens})
 
 @login_required
@@ -116,15 +116,15 @@ def doar_item(request):
             category=request.POST.get('category'),
             condition=request.POST.get('condition'),
             image=request.FILES.get('image') if 'image' in request.FILES else None,
-            # Adicione outros campos conforme necessário
+           
         )
         new_donation.save()
-        return redirect('minhas_doações')  # Redirecione conforme necessário
+        return redirect('minhas_doacoes')  
     return render(request, 'doar_item.html')
 
 @login_required
 def minhas_doacoes(request):
-    doacoes = Doacao.objects.all()  # Recupera todas as doações
+    doacoes = Doacao.objects.all()  
     return render(request, 'minhas_doacoes.html', {'doacoes': doacoes})
 
 @login_required
