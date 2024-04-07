@@ -98,3 +98,8 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 
 # Entrega 2
+
+## Diagrama de atividades do sistema:
+
+![diagrama de atividades doamais entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d1bbca1c-b5c0-44fa-ad41-21ee3fc514d3)
+
