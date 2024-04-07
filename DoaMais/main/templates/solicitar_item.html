@@ -51,7 +51,7 @@
             <textarea id="description" name="description"></textarea>
           </div>
           <div class="buttons-container">
-            <button type="submit">Solicitar</button>
+            <button type="submit" id="submit">Solicitar</button>
           </div>
         </form>
       </div>
@@ -59,14 +59,5 @@
     
     <script src="../static/js/loadNavbar.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.getElementById("itemRequestForm");
-            form.addEventListener("submit", function(event) {
-                event.preventDefault(); // Impede o envio padrão do formulário
-                window.location.href = "itens_solicitados.html"; // Redireciona para a página desejada
-            });
-        });
-    </script>
 </body>
 </html>

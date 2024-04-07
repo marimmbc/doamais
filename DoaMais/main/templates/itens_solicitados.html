@@ -28,7 +28,7 @@
     <tbody>
       {% for item in itens %}
       <tr>
-        <td><img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image"></td>
+        <td><img type="file" id="image" name="image" accept="image/*"></td>
         <td>{{ item.title }}</td>
         <td>{{ item.get_category_display }}</td>
         <td>{{ item.get_condition_display }}</td>
@@ -38,18 +38,10 @@
   </table>
 
   <div class="button-container">
-    <button type="button" id="request-new-item">Solicitar Novo Item</button>
+    <button type="button" id="request-new-item" onclick="window.location.href='{% url 'solicitar_item' %}'" >Solicitar Novo Item</button>
   </div>
 
   <script src="../static/js/loadNavbar.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const requestNewItemBtn = document.getElementById("request-new-item");
-        requestNewItemBtn.addEventListener("click", function() {
-            window.location.href = "solicitar_item.html"; // Redireciona para a página desejada
-        });
-    });
-  </script>
 </body>
 </html>

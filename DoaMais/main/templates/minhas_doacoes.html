@@ -38,14 +38,10 @@
   </table>
 
   <div class="button-container">
-    <button type="button" id="donate-new-item">Doar Novo Item</button>
+    <button type="button" id="donate-new-item" onclick="window.location.href='{% url 'doar_item' %}'">Doar Novo Item</button>
   </div>
 
   <script src="../static/js/loadNavbar.js"></script>
-  <script>
-    document.getElementById('donate-new-item').addEventListener('click', function() {
-      window.location.href = 'doar_item.html';
-    });
-  </script>
+  
 </body>
 </html>
