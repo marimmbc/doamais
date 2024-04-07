@@ -71,53 +71,49 @@ body {
   }
 }
 
+
 .search-results {
-  width: 100%; /* Ou ajuste conforme necessário */
-  margin-top: 20px; /* Espaço entre o formulário e os resultados da pesquisa */
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas com tamanhos iguais */
-  grid-gap: 20px; /* Espaçamento entre os itens */
-  padding: 20px; /* Espaçamento interno */
-  max-width: 1200px;
+  grid-template-columns: repeat(4, 1fr); /* Create four columns */
+  gap: 20px; /* Space between items */
+  padding: 0 20px; /* Padding on the sides */
+  max-width: 1200px; /* Maximum width of the container */
+  margin: 0 auto; /* Centering the container */
 }
 
 .search-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinha os detalhes do item à direita */
+  align-items: flex-end; /* Align items to the right */
 }
 
 .search-item img {
-  width: 100%; /* A imagem ocupa toda a largura do item */
-  border-radius: 5px; /* Bordas arredondadas como na imagem */
-  margin-bottom: 8px; /* Espaço entre a imagem e os detalhes do item */
+  max-width: 100%; /* Ensure the image is responsive */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Rounded corners for the image */
+  margin-bottom: 10px; /* Space between image and text */
 }
 
 .search-item div {
-  text-align: right; /* Alinha o texto à direita */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align text to the right */
 }
 
 .search-item p {
-  margin: 0; /* Remove a margem padrão */
-  padding: 2px 0; /* Pequeno padding para espaçamento vertical */
+  margin: 0; /* Remove default margin */
+  padding: 2px 0; /* Add some padding for spacing */
+  text-align: right; /* Align text to the right */
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
   .search-results {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas menores */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
   }
 }
 
 @media (max-width: 768px) {
   .search-results {
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas de tablets */
+    grid-template-columns: 1fr; /* 1 column on mobile screens */
   }
 }
-
-@media (max-width: 576px) {
-  .search-results {
-    grid-template-columns: 1fr; /* 1 coluna em telas de celular */
-  }
-}
-
