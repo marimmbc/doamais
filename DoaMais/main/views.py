@@ -67,20 +67,18 @@ def editar_perfil(request):
 
     return render(request, 'editar_perfil.html', {'user': user})
 
+
 @login_required
 def pesquisar(request):
     query = request.GET.get('title')
     category = request.GET.get('category')
     condition = request.GET.get('condition')
 
-    resultados = Doacao.objects.all()
+    resultados = Doacao.objects.none()  # Inicia sem nenhum resultado
 
-    if query:
-        resultados = resultados.filter(item_name__icontains=query)
-    if category:
-        resultados = resultados.filter(category=category)
-    if condition:
-        resultados = resultados.filter(condition=condition)
+    # Verifica se todos os parâmetros foram fornecidos
+    if query and category and condition:
+        resultados = Doacao.objects.filter(item_name__icontains=query, category=category, condition=condition)
 
     return render(request, 'pesquisar.html', {'resultados': resultados})
 

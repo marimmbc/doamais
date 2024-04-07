@@ -70,3 +70,28 @@ body {
     width: 100%; /* Full width on mobile screens */
   }
 }
+
+.search-results {
+  width: 80%; /* Smaller width for the table */
+  margin: 20px auto; /* Auto horizontally for centering */
+}
+
+.search-item {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0; /* Margin for each search item */
+}
+
+.search-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px; /* Space between image and text */
+}
+
+.search-item div {
+  display: table-cell;
+  vertical-align: top; /* Align the text to the top of the container */
+  padding: 8px; /* Padding around the text */
+}
