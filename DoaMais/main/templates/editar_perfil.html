@@ -62,10 +62,10 @@
                         Material Escolar
                     </label>
                 </div>
-                
+
                 <div class="buttons">
-                    <button type="button" id="cancel">Cancelar</button>
-                    <button type="submit" id="save">Salvar</button>
+                    <button type="button" id="cancel" onclick="window.location.href='{% url 'perfil' %}'">Cancelar</button>
+                    <button type="submit" id="save" onclick="window.location.href='{% url 'perfil' %}'">Salvar</button>
                 </div>
             </form>
         </div>
@@ -73,41 +73,5 @@
     
     <script src="../static/js/loadNavbar.js"></script>
 
-    <script>
-        // JavaScript for handling image upload and preview
-        document.querySelector('.edit-photo').addEventListener('click', function() {
-            let fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = 'image/*';
-            fileInput.onchange = e => {
-                let file = e.target.files[0];
-                let reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = readerEvent => {
-                    let content = readerEvent.target.result;
-                    document.querySelector('.avatar').src = content;
-                };
-            };
-            fileInput.click();
-        });
-
-        // JavaScript for handling button actions
-        document.addEventListener("DOMContentLoaded", function() {
-            const cancelButton = document.getElementById("cancel");
-            const saveButton = document.getElementById("save");
-
-            // Redirect to 'perfil.html' when cancel button is clicked
-            cancelButton.addEventListener("click", function() {
-                window.location.href = "perfil.html";
-            });
-
-            // Redirect to 'perfil.html' when save button is clicked
-            // Note: This should be replaced with actual form submission logic
-            saveButton.addEventListener("click", function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                window.location.href = "perfil.html";
-            });
-        });
-      </script>
 </body>
 </html>

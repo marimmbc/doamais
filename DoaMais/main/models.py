@@ -28,6 +28,12 @@ class SolicitarItem(models.Model):
     def __str__(self):
         return self.title    
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.username
+    
 class MyUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, first_name=None, last_name=None, location=None, **extra_fields):
         if not email:
@@ -54,28 +60,6 @@ class MyUserManager(BaseUserManager):
 
         return self.create_user(email, username, password, **extra_fields)
 
-class User(AbstractBaseUser):
-    photo = models.ImageField(upload_to='user_photos/', null=True, blank=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
-    location = models.CharField(max_length=100)
-
-    roupa = models.BooleanField(default=False)
-    movel = models.BooleanField(default=False)
-    eletronico = models.BooleanField(default=False)
-    brinquedo = models.BooleanField(default=False)
-    livro = models.BooleanField(default=False)
-    objects = MyUserManager()
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
-    def __str__(self):
-        return self.username
-
-
 
 class Doacao(models.Model):
     item_name = models.CharField(max_length=255)
@@ -98,13 +82,3 @@ class Doacao(models.Model):
     def __str__(self):
         return f"{self.item_name} - {self.category}"
 
-class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    location = forms.CharField(required=True)
-    photo = forms.ImageField(required=False)
-
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'email', 'location', 'photo',)

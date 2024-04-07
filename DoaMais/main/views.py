@@ -1,57 +1,47 @@
-from django import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse
+from django.contrib import messages
 
-from .models import Doacao, SolicitarItem, User, CustomUserCreationForm
+from .models import Doacao, SolicitarItem, User
 
 def inicio(request):
     return render(request, 'inicio.html')
 
 def cadastrar(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save(commit=False)  # Salva o usuário, mas não o commita ainda ao banco de dados
-            user.photo = form.cleaned_data.get('photo')
-            user.first_name = form.cleaned_data.get('first_name')
-            user.last_name = form.cleaned_data.get('last_name')
-            user.email = form.cleaned_data.get('email')
-            user.location = form.cleaned_data.get('location')
-            user.save()  # Agora sim, salva todas as informações no banco de dados
-
-            login(request, user)
-            messages.success(request, ' Registration successful.')
-            return redirect('pesquisar')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 and password1 == password2:
+            try:
+                user = User.objects.create_user(username, email, password1)
+                user.save()
+                user = authenticate(username=username, password=password1)
+                if user is not None:
+                    login(request, user)
+                    return redirect('pesquisar')
+            except Exception as e:
+                return HttpResponse(str(e))
         else:
-            messages.error(request, ' Unsuccessful registration.')
-    else:
-        form = CustomUserCreationForm()
-
-    return render(request, 'cadastrar.html', {'form': form})
-
+            return HttpResponse("As senhas não coincidem ou outro erro de validação.")
+    return render(request, 'cadastrar.html')
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                messages.info(request, f'You are now logged in as {username}.')
-                return redirect('pesquisar')
-            else:
-                messages.error(request, 'Invalid username or password.')
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'login.html', {'form': form})
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('pesquisar')
+        else:
+            messages.error(request, 'Invalid username or password!')
+    return render(request, 'login.html') 
 
 @login_required
 def perfil(request):

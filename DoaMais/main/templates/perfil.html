@@ -39,25 +39,12 @@
     
     
         <div class="buttons">
-            <button type="button" id="requested-items">Itens Solicitados</button>
-            <button type="button" id="edit-profile">Editar Perfil</button>
+            <button type="button" id="requested-items" onclick="window.location.href='{% url 'itens_solicitados' %}'">Itens Solicitados</button>
+            <button type="button" id="edit-profile" onclick="window.location.href='{% url 'editar_perfil' %}'">Editar Perfil</button>
         </div>
     </div>
     
     <script src="../static/js/loadNavbar.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const requestedItemsBtn = document.getElementById("requested-items");
-            requestedItemsBtn.addEventListener("click", function() {
-                window.location.href = "itens_solicitados.html";
-            });
-        
-            const editProfileBtn = document.getElementById("edit-profile");
-            editProfileBtn.addEventListener("click", function() {
-                window.location.href = "editar_perfil.html";
-            });
-        });
-    </script>
 </body>
 </html>
