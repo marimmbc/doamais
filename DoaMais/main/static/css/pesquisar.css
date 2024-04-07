@@ -72,26 +72,52 @@ body {
 }
 
 .search-results {
-  width: 80%; /* Smaller width for the table */
-  margin: 20px auto; /* Auto horizontally for centering */
+  width: 100%; /* Ou ajuste conforme necessário */
+  margin-top: 20px; /* Espaço entre o formulário e os resultados da pesquisa */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas com tamanhos iguais */
+  grid-gap: 20px; /* Espaçamento entre os itens */
+  padding: 20px; /* Espaçamento interno */
+  max-width: 1200px;
 }
 
 .search-item {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-  margin: 10px 0; /* Margin for each search item */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinha os detalhes do item à direita */
 }
 
 .search-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  margin-right: 10px; /* Space between image and text */
+  width: 100%; /* A imagem ocupa toda a largura do item */
+  border-radius: 5px; /* Bordas arredondadas como na imagem */
+  margin-bottom: 8px; /* Espaço entre a imagem e os detalhes do item */
 }
 
 .search-item div {
-  display: table-cell;
-  vertical-align: top; /* Align the text to the top of the container */
-  padding: 8px; /* Padding around the text */
+  text-align: right; /* Alinha o texto à direita */
 }
+
+.search-item p {
+  margin: 0; /* Remove a margem padrão */
+  padding: 2px 0; /* Pequeno padding para espaçamento vertical */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .search-results {
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas de tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .search-results {
+    grid-template-columns: 1fr; /* 1 coluna em telas de celular */
+  }
+}
+
