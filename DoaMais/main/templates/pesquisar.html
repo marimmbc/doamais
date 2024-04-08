@@ -48,7 +48,7 @@
     <div class="search-results">
         {% for item in resultados %}
         <div class="search-item">
-            <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+            <img src="{{ item.image }}" alt="{{ item.item_name }}">
             <div>
                 <p><strong>Nome:</strong> {{ item.item_name }}</p>
                 <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
