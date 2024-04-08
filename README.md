@@ -15,6 +15,9 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
   <a href="https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" width="50" height="50"/>
   </a>
+  <a href="https://doamais.azurewebsites.net/">
+    <img src="https://github.com/marimmbc/doamais/assets/84236149/0795148f-91b6-4bd3-8686-c98975d893fe" width="50" height="50"/>
+  </a>
 </div>
 
 
@@ -103,4 +106,22 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 ![diagrama de atividades doamais entrega 2 (1)](https://github.com/marimmbc/doamais/assets/84236149/4b82fcd8-95b1-4782-920e-7e884736004a)
 
+## Instruções de acesso:
 
+  1. Acessar o link da Azure que está disponível em Links no topo da página;
+  2. Realizar o cadastro com usuário, email e senha;
+  3. Entar no Login com o usuário e senha que foram cadastrados.
+
+## Issue/bug tracker:
+
+![Issue/bug tracker atualizado entrega 2](https://github.com/marimmbc/doamais/assets/84236149/101dfc7b-6c25-4aa7-961e-21fbc05556f4)
+![Issue/bug tracker atualizado entrega 2](https://github.com/marimmbc/doamais/assets/84236149/bcb19d5a-b10d-4780-a36c-829052937818)
+
+##Quadro da Sprint 01:
+
+![quadro sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d5e34cd9-1660-4395-bedf-90c88291c1dd)
+
+## Backlog:
+![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/44730de5-ff2a-499d-a081-09aeb42deb34)
+
+![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d395ad6c-2de9-4c7d-9b29-dfa515567ac0)
