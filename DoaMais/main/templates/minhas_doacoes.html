@@ -28,7 +28,7 @@
     <tbody>
       {% for doacao in doacoes %}
       <tr onclick="window.location.href = 'editar_doação.html';">
-        <td><img src="{{ doacao.image.url }}" alt="Imagem do Item" class="item-image"></td>
+        <td><img type="file" id="image" name="image" accept="image/*"></td>
         <td>{{ doacao.item_name }}</td>
         <td>{{ doacao.category }}</td>
         <td>{{ doacao.get_condition_display }}</td>
