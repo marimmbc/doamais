@@ -15,6 +15,9 @@ DoaMais é uma plataforma projetada para transformar a maneira como lidamos com 
   <a href="https://mmbc.atlassian.net/jira/software/projects/DOA/boards/1">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" width="50" height="50"/>
   </a>
+  <a href="https://doamais.azurewebsites.net/">
+    <img src="https://github.com/marimmbc/doamais/assets/84236149/0795148f-91b6-4bd3-8686-c98975d893fe" width="50" height="50"/>
+  </a>
 </div>
 
 
@@ -103,4 +106,9 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 ![diagrama de atividades doamais entrega 2 (1)](https://github.com/marimmbc/doamais/assets/84236149/4b82fcd8-95b1-4782-920e-7e884736004a)
 
+## Instruções de acesso:
+
+  1. Acessar o link da Azure que está disponível em Links no topo da página;
+  2. Realizar o cadastro com usuário, email e senha;
+  3. Entar no Login com o usuário e senha que foram cadastrados.
 
