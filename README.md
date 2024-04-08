@@ -128,3 +128,7 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 ![quadro backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d6c8b5b0-c8a6-4c33-ac5b-9e163232a199)
 
+
+## Screencast:
+
+https://github.com/marimmbc/doamais/assets/84236149/dafd3844-9436-463b-bf6c-74b76985b6a1
