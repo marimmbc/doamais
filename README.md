@@ -112,3 +112,16 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
   2. Realizar o cadastro com usuário, email e senha;
   3. Entar no Login com o usuário e senha que foram cadastrados.
 
+## Issue/bug tracker:
+
+![Issue/bug tracker atualizado entrega 2](https://github.com/marimmbc/doamais/assets/84236149/101dfc7b-6c25-4aa7-961e-21fbc05556f4)
+![Issue/bug tracker atualizado entrega 2](https://github.com/marimmbc/doamais/assets/84236149/bcb19d5a-b10d-4780-a36c-829052937818)
+
+##Quadro da Sprint 01:
+
+![quadro sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d5e34cd9-1660-4395-bedf-90c88291c1dd)
+
+## Backlog:
+![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/44730de5-ff2a-499d-a081-09aeb42deb34)
+
+![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d395ad6c-2de9-4c7d-9b29-dfa515567ac0)
