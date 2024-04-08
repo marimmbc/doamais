@@ -117,3 +117,46 @@ body {
     grid-template-columns: 1fr; /* 1 column on mobile screens */
   }
 }
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Create four columns */
+  gap: 20px; /* Space between items */
+  padding: 0 20px; /* Padding on the sides */
+  margin-top: 20px; /* Space below the form */
+}
+
+.search-item {
+  background-color: #f3f3f3; /* Background color for the item */
+  padding: 15px; /* Padding inside each item */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the items */
+}
+
+.search-item img {
+  width: 100%; /* Full width of the item */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the space properly */
+  margin-bottom: 10px; /* Space between image and text */
+}
+
+.search-item div {
+  text-align: center; /* Center text below the image */
+}
+
+.search-item p {
+  margin: 4px 0; /* Spacing between lines */
+}
+
+@media (max-width: 1024px) {
+  .search-results {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results {
+    grid-template-columns: 1fr; /* 1 column on mobile screens */
+  }
+}
