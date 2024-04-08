@@ -71,57 +71,38 @@ body {
   }
 }
 
-
 .search-results {
-  width: 90%; /* Adjusted to match form container width */
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* four items per row */
-  grid-template-rows: repeat(4, auto); /* four rows */
-  gap: 20px; /* space between grid items */
-  padding: 20px; /* padding around the grid */
-  align-items: center; /* centers items vertically */
-  justify-items: center; /* centers items horizontally */
+  position: absolute;
+  top: calc(40% + 10px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaço entre os itens */
+  padding: 20px;
+  justify-content: center; /* Centraliza os itens horizontalmente */
 }
 
 .search-item {
-  background-color: #f3f3f3; /* as per your design */
-  border-radius: 10px; /* rounded corners for the items */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
-  padding: 15px; /* space inside each item */
+  flex-basis: calc(25% - 20px); /* 4 itens por linha considerando o espaço entre eles */
   display: flex;
   flex-direction: column;
-  align-items: center; /* aligns item title, category, and condition centrally below the image */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-item img {
-  width: 100%; /* makes image responsive */
-  height: auto; /* maintains aspect ratio */
-  border-radius: 5px; /* rounded corners for images */
+  width: 100%; /* Ocupa toda a largura permitida */
+  height: auto; /* Mantém a proporção da imagem */
+  margin-bottom: 10px; /* Espaço entre a imagem e o texto abaixo */
 }
 
 .search-item div {
-  width: 100%; /* ensures the div fills the width of its parent */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centers the text below the image */
-  text-align: center; /* ensures text is centered if it breaks into multiple lines */
+  text-align: center; /* Centraliza o texto */
 }
 
 .search-item p {
-  margin: 5px 0; /* adds space between paragraphs */
-  font-size: 0.9em; /* adjust to match your design */
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .search-results {
-    grid-template-columns: repeat(2, 1fr); /* two items per row for smaller screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .search-results {
-    grid-template-columns: 1fr; /* one item per row for mobile screens */
-  }
+  margin: 5px 0; /* Espaço acima e abaixo de cada parágrafo */
+  font-size: 14px; /* Tamanho do texto */
 }
