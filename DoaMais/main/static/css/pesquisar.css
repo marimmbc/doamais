@@ -82,7 +82,7 @@ body {
 }
 
 .search-item {
-  flex-basis: calc(25% - 20px); /* 4 itens por linha considerando o espaço entre eles */
+  flex-basis: calc(35% - 15px); /* 4 itens por linha considerando o espaço entre eles */
   display: flex;
   flex-direction: column;
   align-items: center; /* Centraliza o conteúdo verticalmente */
