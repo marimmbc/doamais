@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+
 
 class SolicitarItem(models.Model):
     image = models.ImageField(upload_to='item_images/')
@@ -23,16 +28,25 @@ class SolicitarItem(models.Model):
     def __str__(self):
         return self.title    
 
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.username
+    
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, **extra_fields):
+    def create_user(self, email, username, password=None, first_name=None, last_name=None, location=None, **extra_fields):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError('The given email must be set')
         if not username:
-            raise ValueError('Users must have a username')
+            raise ValueError('The given username must be set')
 
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            first_name=first_name,
+            last_name=last_name,
+            location=location,
             **extra_fields
         )
 
@@ -46,34 +60,16 @@ class MyUserManager(BaseUserManager):
 
         return self.create_user(email, username, password, **extra_fields)
 
-class User(AbstractBaseUser):
-    photo = models.ImageField(upload_to='user_photos/', null=True, blank=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
-    location = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-    objects = MyUserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
-    def __str__(self):
-        return self.username
-
 
 class Doacao(models.Model):
     item_name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='donations_images/', blank=True, null=True)
     CATEGORY_CHOICES = [
-        ('clothes', 'Roupas'),
-        ('furniture', 'Móveis'),
-        ('electronics', 'Eletrônicos'),
-        ('toys', 'Brinquedos'),
-        ('books', 'Livros'),
+        ('clothes', 'Roupa'),
+        ('furniture', 'Móvel'),
+        ('electronics', 'Eletrônico'),
+        ('toy', 'Brinquedo'),
+        ('book', 'Livro'),
     ]
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     CONDITION_CHOICES = [
@@ -85,3 +81,4 @@ class Doacao(models.Model):
 
     def __str__(self):
         return f"{self.item_name} - {self.category}"
+

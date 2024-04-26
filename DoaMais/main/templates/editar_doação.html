@@ -32,8 +32,8 @@
                         <option value="clothes">Roupas</option>
                         <option value="furniture">Móveis</option>
                         <option value="electronics">Eletrônicos</option>
-                        <option value="toys">Brinquedos</option>
-                        <option value="books">Livros</option>
+                        <option value="toy">Brinquedos</option>
+                        <option value="book">Livros</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -51,8 +51,8 @@
                 <textarea id="description" name="description"></textarea>
             </div>
             <div class="buttons">
-                <button type="button" onclick="location.href='minhas_doações.html'">Cancelar</button>
-                <button type="submit">Salvar</button>
+                <button type="button" onclick="window.location.href='{% url 'minhas_doacoes' %}'">Cancelar</button>
+                <button type="submit" id="submit">Salvar</button>
             </div>
           </form>
         </div>

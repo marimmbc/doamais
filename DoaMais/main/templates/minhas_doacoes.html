@@ -13,7 +13,7 @@
   {% include 'navbar.html' %}
 
   <header>
-    <h1>Itens Solicitados</h1>
+    <h1>Itens Doados</h1>
   </header>
 
   <table>
@@ -28,7 +28,7 @@
     <tbody>
       {% for doacao in doacoes %}
       <tr onclick="window.location.href = 'editar_doação.html';">
-        <td><img src="{{ doacao.image.url }}" alt="Imagem do Item" class="item-image"></td>
+        <td><img type="file" id="image" name="image" accept="image/*"></td>
         <td>{{ doacao.item_name }}</td>
         <td>{{ doacao.category }}</td>
         <td>{{ doacao.get_condition_display }}</td>
@@ -38,14 +38,10 @@
   </table>
 
   <div class="button-container">
-    <button type="button" id="donate-new-item">Doar Novo Item</button>
+    <button type="button" id="donate-new-item" onclick="window.location.href='{% url 'doar_item' %}'">Doar Novo Item</button>
   </div>
 
   <script src="../static/js/loadNavbar.js"></script>
-  <script>
-    document.getElementById('donate-new-item').addEventListener('click', function() {
-      window.location.href = 'doar_item.html';
-    });
-  </script>
+  
 </body>
 </html>
