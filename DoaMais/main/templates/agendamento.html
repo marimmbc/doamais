@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+    <title>Agendamento</title>
+    <link rel="stylesheet" href="../static/css/agendamento.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Agendamento</h1>
+        <form action="{% url 'agendamento_create' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="data_agendamento">Data:</label>
+                <input type="date" id="data_agendamento" name="data_agendamento" required>
+            </div>
+            <div class="form-group">
+                <label for="hora_agendamento">Hora:</label>
+                <input type="time" id="hora_agendamento" name="hora_agendamento" required>
+            </div>
+            <button type="submit" class="btn">Agendar</button>
+        </form>
+    </div>
+    <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>

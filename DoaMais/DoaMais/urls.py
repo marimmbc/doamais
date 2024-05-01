@@ -16,4 +16,10 @@ urlpatterns = [
     path('minhas_doacoes/', views.minhas_doacoes, name='minhas_doacoes'),
     path('editar_doação/<int:doacao_id>/', views.editar_doação, name='editar_doação'),
     path('logout/', LogoutView.as_view(next_page='inicio'), name='logout'),
+    path('categoria_brinquedos/', views.categoria_brinquedos, name='categoria_brinquedos'),
+    path('categoria_eletronicos/', views.categoria_eletronicos, name='categoria_eletronicos'),
+    path('categoria_livros/', views.categoria_livros, name='categoria_livros'),
+    path('categoria_moveis/', views.categoria_moveis, name='categoria_moveis'),
+    path('categoria_roupas/', views.categoria_roupas, name='categoria_roupas'),
+    
 ]

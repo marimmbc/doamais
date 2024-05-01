@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+    <title>Roupas</title>
+    <link rel="stylesheet" href="../static/css/categorias.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Roupas</h1>
+
+    <div class="search-results">
+        {% for item in resultados %}
+        <div class="search-item">
+            <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+            <div>
+                <p><strong>Nome:</strong> {{ item.item_name }}</p>
+                <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
+                <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>

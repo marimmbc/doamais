@@ -120,3 +120,37 @@ body {
 .button-like-link:hover {
   background-color: #367fd4;
 }
+
+.nav-links .dropdown {
+  position: relative;
+}
+
+.nav-links .dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;  
+  background-color: #4a98f7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 105;
+  min-width: 160px;
+  border-radius: 5px;
+  width: max-content;  
+}
+
+.nav-links .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.nav-links .dropdown .dropdown-menu li a {
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s linear;
+}
+
+.nav-links .dropdown .dropdown-menu li a:hover {
+  background-color: #367fd4;
+  border-radius: 5px;
+}

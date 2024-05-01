@@ -147,3 +147,29 @@ def editar_doação(request, doacao_id):
 class LogoutWithGet(LogoutView):
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
+
+
+@login_required 
+def categoria_brinquedos(request):
+    itens = Doacao.objects.filter(category='toy')
+    return render(request, 'categoria_brinquedos.html', {'resultados': itens})
+
+@login_required 
+def categoria_eletronicos(request):
+    itens = Doacao.objects.filter(category='electronics')
+    return render(request, 'categoria_eletronicos.html', {'resultados': itens})
+
+@login_required 
+def categoria_livros(request):
+    itens = Doacao.objects.filter(category='book')
+    return render(request, 'categoria_livros.html', {'resultados': itens})
+
+@login_required 
+def categoria_moveis(request):
+    itens = Doacao.objects.filter(category='furniture')
+    return render(request, 'categoria_moveis.html', {'resultados': itens})
+
+@login_required 
+def categoria_roupas(request):
+    itens = Doacao.objects.filter(category='clothes')
+    return render(request, 'categoria_roupas.html', {'resultados': itens})

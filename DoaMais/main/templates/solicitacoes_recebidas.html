@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <title>Agendamento</title>
+  <link rel="stylesheet" href="../static/css/itens_solicitados.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <header>
+    <h1>Itens Solicitados</h1>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Imagem</th>
+        <th>Item</th>
+        <th>Categoria</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in itens %}
+      <tr>
+        <td><img type="file" id="image" name="image" accept="image/*"></td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.get_category_display }}</td>
+        <td>{{ item.get_condition_display }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <button type="button" id="request-new-item" onclick="window.location.href='{% url 'solicitar_item' %}'" >Solicitar Novo Item</button>
+  </div>
+
+  <script src="../static/js/loadNavbar.js"></script>
+
+</body>
+</html>

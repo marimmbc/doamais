@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 40px 20px; /* Adequado para padding horizontal */
+  background-color: white;
+  display: flex;
+  flex-direction: column; /* Direção de fluxo principal como coluna */
+  align-items: center; /* Centraliza horizontalmente */
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  gap: 20px; /* Espaço entre os itens */
+  width: 100%;
+  max-width: 1200px; /* Largura máxima do container dos itens */
+}
+
+.search-item {
+  width: calc(25% - 20px); /* 4 itens por linha, ajustando o espaçamento */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-item img {
+  width: 100%; /* Ajuste para que a imagem ocupe toda a largura */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.search-item div {
+  text-align: center;
+}
+
+.search-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}

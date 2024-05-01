@@ -82,3 +82,10 @@ class Doacao(models.Model):
     def __str__(self):
         return f"{self.item_name} - {self.category}"
 
+class Agendamento(models.Model):
+    doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, verbose_name="Doação Relacionada")
+    data_agendamento = models.DateField(verbose_name="Data do Agendamento")
+    hora_agendamento = models.TimeField(verbose_name="Hora do Agendamento")
+
+    def __str__(self):
+        return f"Agendamento para {self.doacao.item_name} em {self.data_agendamento} às {self.hora_agendamento}"
