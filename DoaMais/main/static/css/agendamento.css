@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Utilize a cor de fundo branca para manter o design leve e limpo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura total da viewport */
+}
+
+.container {
+    width: 50%; /* Ajustar conforme a necessidade */
+    max-width: 600px; /* Máximo de largura para melhor visualização em dispositivos maiores */
+    padding: 20px;
+    background-color: #f8f9fa; /* Cor de fundo leve para o container */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave para o container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #333; /* Cor do texto */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 100%; /* Largura total dentro do container */
+    margin-bottom: 15px; /* Espaço entre os grupos de formulário */
+}
+
+input[type="date"],
+input[type="time"] {
+    width: 100%; /* Largura total */
+    padding: 8px;
+    border: 1px solid #ccc; /* Borda sólida */
+    border-radius: 4px; /* Bordas arredondadas */
+    background-color: #fff; /* Cor de fundo branca para o input */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Espaço abaixo do rótulo */
+    color: #666; /* Cor do texto do rótulo */
+}
+
+button {
+    padding: 10px 20px;
+    width: 100%; /* Largura total para o botão */
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff; /* Cor azul para o botão */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor mais escura no hover */
+}

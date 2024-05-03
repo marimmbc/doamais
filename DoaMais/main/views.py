@@ -2,11 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
+from .models import Doacao, Avaliacao, SolicitarItem, User
+from django.urls import reverse
 
-from .models import Doacao, SolicitarItem, User
 
 def inicio(request):
     return render(request, 'inicio.html')
@@ -173,3 +174,81 @@ def categoria_moveis(request):
 def categoria_roupas(request):
     itens = Doacao.objects.filter(category='clothes')
     return render(request, 'categoria_roupas.html', {'resultados': itens})
+
+from django.shortcuts import render, redirect
+from django.views import View
+from .models import Agendamento, Doacao
+from django.contrib import messages
+
+@login_required 
+class AgendamentoView(View):
+    template_name = 'agendamento.html'
+
+    def get(self, request):
+        doacoes = Doacao.objects.all()
+        return render(request, self.template_name, {'doacoes': doacoes})
+
+    def post(self, request):
+        doacao_id = request.POST.get('doacao')
+        data_agendamento = request.POST.get('data_agendamento')
+        hora_agendamento = request.POST.get('hora_agendamento')
+
+        try:
+            doacao = Doacao.objects.get(pk=doacao_id)
+            novo_agendamento = Agendamento(
+                doacao=doacao,
+                data_agendamento=data_agendamento,
+                hora_agendamento=hora_agendamento
+            )
+            novo_agendamento.save()
+            messages.success(request, 'Agendamento criado com sucesso!')
+            return redirect('alguma_url_apos_sucesso')
+        except Exception as e:
+            messages.error(request, f'Erro ao criar agendamento: {e}')
+            return redirect('agendamento')
+
+
+from django.shortcuts import render
+from .models import Doacao
+
+@login_required 
+def avaliacoes(request):
+    doacoes_com_avaliacoes = Doacao.objects.filter(avaliacao__isnull=False).prefetch_related('avaliacao')
+    doacoes_sem_avaliacoes = Doacao.objects.filter(avaliacao__isnull=True)
+    return render(request, 'avaliacoes.html', {
+        'doacoes_com_avaliacoes': doacoes_com_avaliacoes,
+        'doacoes_sem_avaliacoes': doacoes_sem_avaliacoes
+    })
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Doacao, Avaliacao
+
+@login_required
+def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL
+    doacao = get_object_or_404(Doacao, pk=item_id)  # Usa item_id para buscar a doação
+
+    # Verifica se a doação já foi avaliada
+    try:
+        avaliacao = Avaliacao.objects.get(doacao=doacao)
+        messages.info(request, 'Esta doação já foi avaliada.')
+        return redirect('avaliacoes')  # Redireciona para a lista de avaliações
+    except Avaliacao.DoesNotExist:
+        # Se não foi avaliada, continua para a página de avaliação
+        pass
+
+    if request.method == 'POST':
+        avaliacao = Avaliacao(
+            doacao=doacao,
+            disponibilidade_entrega=request.POST['disponibilidade_entrega'],
+            condicao_item=request.POST['condicao_item'],
+            higiene_item=request.POST['higiene_item'],
+            adequacao_descricao=request.POST['adequacao_descricao'],
+            observacao=request.POST.get('observacao', '')
+        )
+        avaliacao.save()
+        messages.success(request, 'Avaliação realizada com sucesso!')
+        return redirect('avaliacoes')  # Redireciona para a lista de avaliações após sucesso
+
+    return render(request, 'fazendo_avaliacao.html', {'doacao': doacao})
+

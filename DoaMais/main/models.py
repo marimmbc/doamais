@@ -89,3 +89,20 @@ class Agendamento(models.Model):
 
     def __str__(self):
         return f"Agendamento para {self.doacao.item_name} em {self.data_agendamento} às {self.hora_agendamento}"
+    
+
+
+class Avaliacao(models.Model):
+    doacao = models.OneToOneField(Doacao, on_delete=models.CASCADE, related_name='avaliacao')
+    disponibilidade_entrega = models.IntegerField(verbose_name="Disponibilidade de Entrega/Retirada", choices=[(i, f'{i} Estrelas') for i in range(1, 6)])
+    condicao_item = models.IntegerField(verbose_name="Condição do Item", choices=[(i, f'{i} Estrelas') for i in range(1, 6)])
+    higiene_item = models.IntegerField(verbose_name="Higiene do Item", choices=[(i, f'{i} Estrelas') for i in range(1, 6)])
+    adequacao_descricao = models.IntegerField(verbose_name="Adequação à Descrição", choices=[(i, f'{i} Estrelas') for i in range(1, 6)])
+    observacao = models.TextField(verbose_name="Observação", blank=True, null=True)
+
+    def average_stars(self):
+        total = (self.disponibilidade_entrega + self.condicao_item + self.higiene_item + self.adequacao_descricao)
+        return total / 4.0
+
+    def __str__(self):
+        return f"Avaliação #{self.id} - {self.condicao_item} estrelas para condição do item"

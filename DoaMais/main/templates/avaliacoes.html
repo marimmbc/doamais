@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
-  <title>Agendamento</title>
-  <link rel="stylesheet" href="../static/css/itens_solicitados.css">
+  <title>Avaliações</title>
+  <link rel="stylesheet" href="../static/css/avaliacoes.css">
   <link rel="stylesheet" href="../static/css/navbar.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
@@ -14,35 +14,36 @@
   {% include 'navbar.html' %}
 
   <header>
-    <h1>Itens Solicitados</h1>
+    <h1>Avaliações</h1>
   </header>
 
   <table>
     <thead>
       <tr>
-        <th>Imagem</th>
         <th>Item</th>
-        <th>Categoria</th>
-        <th>Estado</th>
+        <th>Avaliação</th>
       </tr>
     </thead>
     <tbody>
       {% for item in itens %}
       <tr>
-        <td><img type="file" id="image" name="image" accept="image/*"></td>
         <td>{{ item.title }}</td>
-        <td>{{ item.get_category_display }}</td>
-        <td>{{ item.get_condition_display }}</td>
+        <td>
+          {% if item.avaliacao %}
+            <div class="stars-container">
+              {% for i in 1|range:6 %}
+                <span class="star{% if i <= item.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            <button type="button" onclick="window.location.href='{% url 'fazer_avaliacao' item.id %}'">Fazer Avaliação</button>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
-  <div class="button-container">
-    <button type="button" id="request-new-item" onclick="window.location.href='{% url 'solicitar_item' %}'" >Solicitar Novo Item</button>
-  </div>
-
   <script src="../static/js/loadNavbar.js"></script>
-
 </body>
 </html>

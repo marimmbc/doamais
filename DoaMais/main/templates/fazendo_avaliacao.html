@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+    <title>Avaliando</title>
+    <link rel="stylesheet" href="../static/css/fazendo_avaliacao.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Avaliação</h1>
+        <form action="{% url 'submit_avaliacao' %}" method="post">
+            {% csrf_token %}
+            <div class="rating-group">
+                <label>Disponibilidade de Entrega/Retirada:</label>
+                {% for i in 1|range:6 %}
+                <input type="radio" id="disponibilidade_{{i}}" name="disponibilidade_entrega" value="{{i}}" required>
+                <label for="disponibilidade_{{i}}">{{i}} Estrela{{ i|pluralize:"s" }}</label>
+                {% endfor %}
+            </div>
+            <div class="rating-group">
+                <label>Condição do Item:</label>
+                {% for i in 1|range:6 %}
+                <input type="radio" id="condicao_{{i}}" name="condicao_item" value="{{i}}" required>
+                <label for="condicao_{{i}}">{{i}} Estrela{{ i|pluralize:"s" }}</label>
+                {% endfor %}
+            </div>
+            <div class="rating-group">
+                <label>Higiene do Item:</label>
+                {% for i in 1|range:6 %}
+                <input type="radio" id="higiene_{{i}}" name="higiene_item" value="{{i}}" required>
+                <label for="higiene_{{i}}">{{i}} Estrela{{ i|pluralize:"s" }}</label>
+                {% endfor %}
+            </div>
+            <div class="rating-group">
+                <label>Adequação à Descrição:</label>
+                {% for i in 1|range:6 %}
+                <input type="radio" id="adequacao_{{i}}" name="adequacao_descricao" value="{{i}}" required>
+                <label for="adequacao_{{i}}">{{i}} Estrela{{ i|pluralize:"s" }}</label>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="observacao">Observação (opcional):</label>
+                <textarea id="observacao" name="observacao"></textarea>
+            </div>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+    </div>
+    <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>

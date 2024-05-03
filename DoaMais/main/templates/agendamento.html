@@ -16,9 +16,13 @@
         <form action="{% url 'agendamento_create' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-                <label for="data_agendamento">Data:</label>
-                <input type="date" id="data_agendamento" name="data_agendamento" required>
-            </div>
+                <label for="doacao">Doação:</label>
+                <select id="doacao" name="doacao" required>
+                    {% for doacao in doacoes %}
+                    <option value="{{ doacao.id }}">{{ doacao.item_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>            
             <div class="form-group">
                 <label for="hora_agendamento">Hora:</label>
                 <input type="time" id="hora_agendamento" name="hora_agendamento" required>

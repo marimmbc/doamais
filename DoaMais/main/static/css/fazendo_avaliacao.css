@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Cor de fundo mais clara para contrastar com o formulário */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 60%;
+    max-width: 600px; /* Limitar o tamanho máximo do container */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra para dar um efeito elevado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.rating-group {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rating-group label {
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    display: none; /* Ocultar o radio button padrão */
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    padding: 5px 10px; /* Espaçamento dentro de cada estrela */
+    margin-right: 5px; /* Espaço entre as estrelas */
+    text-indent: -9999px; /* Ocultar o texto */
+    background: url('../static/imagens/star-empty.png') no-repeat center; /* Imagem de estrela vazia */
+    width: 30px; /* Largura da estrela */
+    height: 30px; /* Altura da estrela */
+}
+
+input[type="radio"]:checked + label {
+    background: url('../static/imagens/star-filled.png') no-repeat center; /* Imagem de estrela cheia */
+}
+
+.form-group {
+    width: 100%;
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%; /* Largura total do textarea */
+    padding: 10px; /* Padding interno do textarea */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 100px; /* Altura fixa do textarea */
+    resize: none; /* Desabilitar redimensionamento */
+}
+
+button {
+    width: 100%; /* Botão ocupa toda a largura disponível */
+    padding: 10px 0; /* Padding superior e inferior do botão */
+    margin-top: 20px; /* Espaço acima do botão */
+    background-color: #6c757d; /* Cor de fundo do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #5a6268; /* Cor de fundo do botão ao passar o mouse */
+}
