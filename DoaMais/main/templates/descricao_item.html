@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <title>Descrição do Item</title>
+  <link rel="stylesheet" href="../static/css/descricao_item.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="item-details-container">
+    <h1>{{ item.item_name }}</h1>
+    <img src="{{ item.image.url }}" alt="{{ item.item_name }}" class="item-image">
+    <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
+    <p><strong>Estado de Conservação:</strong> {{ item.get_condition_display }}</p>
+    <p><strong>Descrição:</strong> {{ item.description }}</p>
+    <p><strong>Usuário que Solicitou:</strong> {{ item.requester.username }}</p> <!-- Ajustar conforme seu modelo -->
+    <p><strong>Localização:</strong> {{ item.location }}</p> <!-- Ajustar conforme seu modelo -->
+    <button onclick="location.href='{% url 'solicitar_item' item.id %}'">Solicitar Item</button>
+  </div>
+
+  <script src="../static/js/loadNavbar.js"></script>
+</body>
+</html>

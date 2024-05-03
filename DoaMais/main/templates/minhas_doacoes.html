@@ -8,7 +8,6 @@
   <title>Minhas Doações</title>
   <link rel="stylesheet" href="../static/css/navbar.css">  
   <link rel="stylesheet" href="../static/css/minhas_doacoes.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
   {% include 'navbar.html' %}
@@ -24,25 +23,26 @@
         <th>Item</th>
         <th>Categoria</th>
         <th>Estado</th>
+        <th>Agendamento</th>
       </tr>
     </thead>
     <tbody>
       {% for doacao in doacoes %}
-      <tr onclick="window.location.href = 'editar_doação.html';">
-        <td><img type="file" id="image" name="image" accept="image/*"></td>
+      <tr>
+        <td><img src="{{ doacao.image.url }}" alt="Imagem do Item"></td>
         <td>{{ doacao.item_name }}</td>
-        <td>{{ doacao.category }}</td>
+        <td>{{ doacao.get_category_display }}</td>
         <td>{{ doacao.get_condition_display }}</td>
+        <td>
+          {% if doacao.is_requested %}
+          <button onclick="window.location.href='{% url 'agendamento' doacao.id %}'">Agendar</button>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
-  <div class="button-container">
-    <button type="button" id="donate-new-item" onclick="window.location.href='{% url 'doar_item' %}'">Doar Novo Item</button>
-  </div>
-
   <script src="../static/js/loadNavbar.js"></script>
-  
 </body>
 </html>

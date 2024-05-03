@@ -54,11 +54,19 @@
             <div class="buttons">
                 <button type="button" onclick="window.location.href='{% url 'minhas_doacoes' %}'">Cancelar</button>
                 <button type="submit" id="submit">Salvar</button>
+                <button type="button" id="delete" onclick="confirmDelete()">Excluir</button>
             </div>
           </form>
         </div>
       </div>
-
+    
+      <script>
+        function confirmDelete() {
+          if (confirm("Tem certeza que deseja excluir este item? Esta ação é irreversível!")) {
+            window.location.href = '{% url "excluir_doacao" doacao.id %}';
+          }
+        }
+      </script>
     <script src="../static/js/loadNavbar.js"></script>
     
 </body>

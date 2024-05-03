@@ -11,11 +11,25 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+  {% include 'navbar.html' %}
+    <h1>Brinquedos</h1>
 
+    <div class="search-results">
+        {% for item in resultados %}
+        <div class="search-item" onclick="window.location.href='{% url 'descricao_item' item.id %}'">
+            <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+            <div>
+                <p><strong>Nome:</strong> {{ item.item_name }}</p>
+                <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
+                <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+        <div style="clear: both;"></div>
+        {% endif %}
+        {% endfor %}
+    </div>
 
-
-    
     <script src="../static/js/loadNavbar.js"></script>
 </body>
 </html>

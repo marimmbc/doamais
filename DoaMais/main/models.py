@@ -25,6 +25,8 @@ class SolicitarItem(models.Model):
     condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
     description = models.TextField()
 
+    is_requested = models.BooleanField(default=False) 
+     
     def __str__(self):
         return self.title    
 
@@ -62,8 +64,7 @@ class MyUserManager(BaseUserManager):
 
 
 class Doacao(models.Model):
-    item_name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='donations_images/', blank=True, null=True)
+
     CATEGORY_CHOICES = [
         ('clothes', 'Roupa'),
         ('furniture', 'Móvel'),
@@ -71,13 +72,19 @@ class Doacao(models.Model):
         ('toy', 'Brinquedo'),
         ('book', 'Livro'),
     ]
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     CONDITION_CHOICES = [
         ('new', 'Novo'),
         ('used_good', 'Usado - Bom'),
         ('used_acceptable', 'Usado - Aceitável'),
     ]
+
+    item_name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='donations_images/', blank=True, null=True)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
+    donor = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=255)
+
 
     def __str__(self):
         return f"{self.item_name} - {self.category}"
@@ -90,8 +97,7 @@ class Agendamento(models.Model):
     def __str__(self):
         return f"Agendamento para {self.doacao.item_name} em {self.data_agendamento} às {self.hora_agendamento}"
     
-
-
+    
 class Avaliacao(models.Model):
     doacao = models.OneToOneField(Doacao, on_delete=models.CASCADE, related_name='avaliacao')
     disponibilidade_entrega = models.IntegerField(verbose_name="Disponibilidade de Entrega/Retirada", choices=[(i, f'{i} Estrelas') for i in range(1, 6)])

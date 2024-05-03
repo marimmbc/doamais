@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
-  <title>Livros</title>
-  <link rel="stylesheet" href="../static/css/itens_solicitados.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+    <title>Livros</title>
+    <link rel="stylesheet" href="../static/css/categorias.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
+  {% include 'navbar.html' %}
+  <h1>Livros</h1>
 
+  <div class="search-results">
+      {% for item in resultados %}
+      <div class="search-item" onclick="window.location.href='{% url 'descricao_item' item.id %}'">
+          <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+          <div>
+              <p><strong>Nome:</strong> {{ item.item_name }}</p>
+              <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
+              <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+          </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+      <div style="clear: both;"></div>
+      {% endif %}
+      {% endfor %}
+  </div>
 
-
-    
     <script src="../static/js/loadNavbar.js"></script>
 </body>
 </html>

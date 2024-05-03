@@ -83,28 +83,13 @@ def pesquisar(request):
 
     return render(request, 'pesquisar.html', {'resultados': resultados})
 
-@login_required
-def solicitar_item(request):
-    if request.method == 'POST':
-        form_data = request.POST
-        image = request.FILES.get('image')
-
-        novo_item = SolicitarItem(
-            title=form_data['title'],
-            category=form_data['category'],
-            condition=form_data['condition'],
-            description=form_data['description'],
-            image=image
-        )
-        novo_item.save()
-
-        return redirect('itens_solicitados')  
-
-    return render(request, 'solicitar_item.html')
 
 @login_required
 def itens_solicitados(request):
-    itens = SolicitarItem.objects.all()  
+    itens = SolicitarItem.objects.all()
+    for item in itens:
+        agendamentos = Agendamento.objects.filter(doacao__solicitaritem=item).order_by('-data_agendamento', '-hora_agendamento')
+        item.agendamento_recente = agendamentos.first() if agendamentos.exists() else None
     return render(request, 'itens_solicitados.html', {'itens': itens})
 
 @login_required
@@ -123,7 +108,7 @@ def doar_item(request):
 
 @login_required
 def minhas_doacoes(request):
-    doacoes = Doacao.objects.all()  
+    doacoes = Doacao.objects.all()
     return render(request, 'minhas_doacoes.html', {'doacoes': doacoes})
 
 @login_required
@@ -252,3 +237,18 @@ def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL
 
     return render(request, 'fazendo_avaliacao.html', {'doacao': doacao})
 
+@login_required
+def descricao_item(request, item_id):
+    # Busca o item específico pelo ID, usando get_object_or_404 para retornar um erro 404 se o item não existir
+    item = get_object_or_404(Doacao, pk=item_id)
+    
+    # Renderiza o template descricao_item.html, passando o item buscado como contexto
+    return render(request, 'descricao_item.html', {'item': item})
+
+@login_required
+def excluir_doacao(request, doacao_id):
+    doacao = get_object_or_404(Doacao, id=doacao_id)
+    if request.method == 'POST':
+        doacao.delete()
+        return redirect('minhas_doacoes')
+    return render(request, 'confirm_delete.html', {'doacao': doacao})
