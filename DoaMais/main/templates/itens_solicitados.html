@@ -28,14 +28,14 @@
       </tr>
     </thead>
     <tbody>
-      {% for item in itens %}
+      {% for solicitacao in solicitacoes %}
       <tr>
-        <td><img src="{{ item.image.url }}" alt="{{ item.title }}" style="width: 50px; height: auto;"></td>
-        <td>{{ item.title }}</td>
-        <td>{{ item.get_category_display }}</td>
-        <td>{{ item.get_condition_display }}</td>
-        <td>{{ item.agendamento_recente.data_agendamento|date:"d/m/Y" if item.agendamento_recente }}</td>
-        <td>{{ item.agendamento_recente.hora_agendamento|date:"H:i" if item.agendamento_recente }}</td>
+        <td><img src="{{ solicitacao.doacao.image.url }}" alt="{{ solicitacao.doacao.item_name }}" style="width: 50px; height: auto;"></td>
+        <td>{{ solicitacao.doacao.item_name }}</td>
+        <td>{{ solicitacao.doacao.get_category_display }}</td>
+        <td>{{ solicitacao.doacao.get_condition_display }}</td>
+        <td>{{ solicitacao.agendamento_recente.data_agendamento|date:"d/m/Y" if solicitacao.agendamento_recente }}</td>
+        <td>{{ solicitacao.agendamento_recente.hora_agendamento|time:"H:i" if solicitacao.agendamento_recente }}</td>
       </tr>
       {% endfor %}
     </tbody>

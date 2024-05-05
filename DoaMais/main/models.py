@@ -3,32 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db import models
+from django.conf import settings
 
 
-
-class SolicitarItem(models.Model):
-    image = models.ImageField(upload_to='item_images/')
-    title = models.CharField(max_length=255)
-    CATEGORY_CHOICES = [
-        ('clothes', 'Roupa'),
-        ('furniture', 'Móvel'),
-        ('electronics', 'Eletrônico'),
-        ('toy', 'Brinquedo'),
-        ('book', 'Livro'),
-    ]
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    CONDITION_CHOICES = [
-        ('new', 'Novo'),
-        ('used_good', 'Usado - Bom'),
-        ('used_acceptable', 'Usado - Aceitável'),
-    ]
-    condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
-    description = models.TextField()
-
-    is_requested = models.BooleanField(default=False) 
-     
-    def __str__(self):
-        return self.title    
 
 
 class UserProfile(models.Model):
@@ -82,7 +60,7 @@ class Doacao(models.Model):
     image = models.ImageField(upload_to='donations_images/', blank=True, null=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
-    donor = models.ForeignKey(User, on_delete=models.CASCADE)
+    donor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doacoes')
     location = models.CharField(max_length=255)
 
 
@@ -112,3 +90,13 @@ class Avaliacao(models.Model):
 
     def __str__(self):
         return f"Avaliação #{self.id} - {self.condicao_item} estrelas para condição do item"
+
+
+class Solicitacao(models.Model):
+    doacao = models.ForeignKey('Doacao', on_delete=models.CASCADE, related_name='solicitacoes')
+    solicitante = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='solicitacoes_feitas')
+    data_solicitacao = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=(('pendente', 'Pendente'), ('aceito', 'Aceito'), ('recusado', 'Recusado')), default='pendente')
+
+    def __str__(self):
+        return f"{self.solicitante.username} solicitou {self.doacao.item_name} em {self.data_solicitacao.strftime('%Y-%m-%d')}"

@@ -17,12 +17,13 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="doacao">Doação:</label>
-                <select id="doacao" name="doacao" required>
-                    {% for doacao in doacoes %}
-                    <option value="{{ doacao.id }}">{{ doacao.item_name }}</option>
-                    {% endfor %}
-                </select>
-            </div>            
+                <input type="text" id="doacao" name="doacao" value="{{ doacoes.0.item_name }}" readonly>
+                <input type="hidden" name="doacao_id" value="{{ doacoes.0.id }}">
+            </div>
+            <div class="form-group">
+                <label for="data_agendamento">Data:</label>
+                <input type="date" id="data_agendamento" name="data_agendamento" required>
+            </div>
             <div class="form-group">
                 <label for="hora_agendamento">Hora:</label>
                 <input type="time" id="hora_agendamento" name="hora_agendamento" required>

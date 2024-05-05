@@ -5,8 +5,9 @@ from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Doacao, Avaliacao, SolicitarItem, User
+from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento
 from django.urls import reverse
+from django.views import View
 
 
 def inicio(request):
@@ -86,11 +87,15 @@ def pesquisar(request):
 
 @login_required
 def itens_solicitados(request):
-    itens = SolicitarItem.objects.all()
-    for item in itens:
-        agendamentos = Agendamento.objects.filter(doacao__solicitaritem=item).order_by('-data_agendamento', '-hora_agendamento')
-        item.agendamento_recente = agendamentos.first() if agendamentos.exists() else None
-    return render(request, 'itens_solicitados.html', {'itens': itens})
+    # Busca todas as solicitações feitas, incluindo os dados da doação associada
+    solicitacoes = Solicitacao.objects.select_related('doacao').all()
+
+    # Adicionando informações sobre o agendamento mais recente para cada solicitação
+    for solicitacao in solicitacoes:
+        agendamentos = Agendamento.objects.filter(doacao=solicitacao.doacao).order_by('-data_agendamento', '-hora_agendamento')
+        solicitacao.agendamento_recente = agendamentos.first() if agendamentos.exists() else None
+
+    return render(request, 'itens_solicitados.html', {'solicitacoes': solicitacoes})
 
 @login_required
 def doar_item(request):
@@ -165,19 +170,20 @@ from django.views import View
 from .models import Agendamento, Doacao
 from django.contrib import messages
 
-@login_required 
-class AgendamentoView(View):
-    template_name = 'agendamento.html'
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import Doacao, Agendamento
 
-    def get(self, request):
+@login_required
+def agendamento_view(request):
+    if request.method == 'GET':
         doacoes = Doacao.objects.all()
-        return render(request, self.template_name, {'doacoes': doacoes})
-
-    def post(self, request):
+        return render(request, 'agendamento.html', {'doacoes': doacoes})
+    elif request.method == 'POST':
         doacao_id = request.POST.get('doacao')
         data_agendamento = request.POST.get('data_agendamento')
         hora_agendamento = request.POST.get('hora_agendamento')
-
         try:
             doacao = Doacao.objects.get(pk=doacao_id)
             novo_agendamento = Agendamento(
@@ -187,10 +193,11 @@ class AgendamentoView(View):
             )
             novo_agendamento.save()
             messages.success(request, 'Agendamento criado com sucesso!')
-            return redirect('alguma_url_apos_sucesso')
+            return redirect('alguma_url_apos_sucesso')  # Altere 'alguma_url_apos_sucesso' para o nome real da URL de destino após o sucesso
         except Exception as e:
             messages.error(request, f'Erro ao criar agendamento: {e}')
             return redirect('agendamento')
+
 
 
 from django.shortcuts import render
@@ -239,10 +246,11 @@ def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL
 
 @login_required
 def descricao_item(request, item_id):
-    # Busca o item específico pelo ID, usando get_object_or_404 para retornar um erro 404 se o item não existir
     item = get_object_or_404(Doacao, pk=item_id)
-    
-    # Renderiza o template descricao_item.html, passando o item buscado como contexto
+    if request.method == 'POST':
+        Solicitacao.objects.create(doacao=item, solicitante=request.user)
+        return redirect('alguma_url_de_sucesso')  # Redirecionar para uma página de confirmação ou de volta à lista de itens
+
     return render(request, 'descricao_item.html', {'item': item})
 
 @login_required
@@ -252,3 +260,23 @@ def excluir_doacao(request, doacao_id):
         doacao.delete()
         return redirect('minhas_doacoes')
     return render(request, 'confirm_delete.html', {'doacao': doacao})
+
+@login_required
+def solicitacoes_recebidas(request):
+    # Busca todas as doações que têm solicitações e que o usuário logado é o donor
+    doacoes_com_solicitacoes = Doacao.objects.filter(donor=request.user).distinct()
+
+    itens = []
+    for doacao in doacoes_com_solicitacoes:
+        # Filtra solicitações pendentes para essa doação
+        solicitacoes_pendentes = doacao.solicitacoes.filter(status='pendente')
+        show_agendamento_button = solicitacoes_pendentes.exists()
+
+        # Adiciona a doação e a condição do botão para o contexto
+        itens.append({
+            'doacao': doacao,
+            'show_agendamento_button': show_agendamento_button,
+            'solicitacoes_pendentes': solicitacoes_pendentes  # Opcional, se você quiser mostrar detalhes das solicitações
+        })
+
+    return render(request, 'solicitacoes_recebidas.html', {'itens': itens})
