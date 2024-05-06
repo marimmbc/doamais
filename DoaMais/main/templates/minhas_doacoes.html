@@ -33,15 +33,13 @@
         <td>{{ doacao.item_name }}</td>
         <td>{{ doacao.get_category_display }}</td>
         <td>{{ doacao.get_condition_display }}</td>
-        <td>
-          {% if doacao.is_requested %}
-          <button onclick="window.location.href='{% url 'agendamento' doacao.id %}'">Agendar</button>
-          {% endif %}
-        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  <div class="button-container">
+    <button id="donate-new-item" onclick="window.location.href='{% url 'doar_item' %}'">Fazer Nova Doação</button>
+  </div>
 
   <script src="../static/js/loadNavbar.js"></script>
 </body>
