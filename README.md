@@ -125,3 +125,7 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 ![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/44730de5-ff2a-499d-a081-09aeb42deb34)
 
 ![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d395ad6c-2de9-4c7d-9b29-dfa515567ac0)
+
+## Screencast:
+https://github.com/marimmbc/doamais/assets/84236149/ec0938d1-cfb6-478f-9698-d9f799d75848
+
