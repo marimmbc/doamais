@@ -105,7 +105,7 @@ def doar_item(request):
             category=request.POST.get('category'),
             condition=request.POST.get('condition'),
             image=request.FILES.get('image') if 'image' in request.FILES else None,
-           
+            donor=request.user
         )
         new_donation.save()
         return redirect('minhas_doacoes')  
@@ -113,7 +113,7 @@ def doar_item(request):
 
 @login_required
 def minhas_doacoes(request):
-    doacoes = Doacao.objects.all()
+    doacoes = Doacao.objects.filter(donor=request.user)
     return render(request, 'minhas_doacoes.html', {'doacoes': doacoes})
 
 @login_required
