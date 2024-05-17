@@ -5,7 +5,7 @@ from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento
+from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento, Favorito
 from django.urls import reverse
 from django.views import View
 
@@ -114,6 +114,7 @@ def doar_item(request):
 @login_required
 def minhas_doacoes(request):
     doacoes = Doacao.objects.filter(donor=request.user)
+    print(doacoes)  # Isso irá mostrar no console os objetos de doações recuperados
     return render(request, 'minhas_doacoes.html', {'doacoes': doacoes})
 
 @login_required
@@ -280,3 +281,9 @@ def solicitacoes_recebidas(request):
         })
 
     return render(request, 'solicitacoes_recebidas.html', {'itens': itens})
+
+@login_required
+def favoritos(request):
+    # Obtendo todos os favoritos do usuário logado
+    favoritos = Favorito.objects.filter(usuario=request.user).select_related('doacao')
+    return render(request, 'favoritos.html', {'favoritos': favoritos})

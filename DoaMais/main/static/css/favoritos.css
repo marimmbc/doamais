@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding-top: 40px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.form-container {
+  width: 90%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 75px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.search-item {
+  flex-basis: calc(25% - 20px); /* Ajustado para quatro itens por linha */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.search-item div {
+  text-align: center;
+}
+
+.search-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .search-item {
+    flex-basis: calc(50% - 20px); /* Ajustado para duas colunas em tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-item {
+    flex-basis: 100%; /* Uma coluna em telas móveis */
+  }
+}
