@@ -7,8 +7,6 @@ from django.db import models
 from django.conf import settings
 
 
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     def __str__(self):
@@ -101,8 +99,6 @@ class Solicitacao(models.Model):
     def __str__(self):
         return f"{self.solicitante.username} solicitou {self.doacao.item_name} em {self.data_solicitacao.strftime('%Y-%m-%d')}"
 
-from django.conf import settings
-from django.db import models
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favoritos')

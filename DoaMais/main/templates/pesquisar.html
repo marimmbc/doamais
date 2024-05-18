@@ -51,14 +51,15 @@
         <div class="search-item">
             <img src="{{ item.image }}" alt="{{ item.item_name }}">
             <div>
-                <p><strong>Nome:</strong> {{ item.item_name }}</p>
-                <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
-                <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+                <p> {{ item.item_name }}</p>
+                <!-- Ícone de estrela para marcar como favorito -->
+                <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
             </div>
         </div>
         {% endfor %}
     </div>
 
     <script src="../static/js/loadNavbar.js"></script>
+    <script src="{% static '../static/js/favoritar.js' %}"></script>
 </body>
 </html>

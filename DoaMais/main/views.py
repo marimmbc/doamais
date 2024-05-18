@@ -1,13 +1,17 @@
+# Importações Django para autenticação, visualizações e utilitários
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from django.contrib import messages
-from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento, Favorito
 from django.urls import reverse
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+
+# Importações de modelos específicos do seu aplicativo
+from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento, Favorito
 
 
 def inicio(request):
@@ -72,17 +76,42 @@ def editar_perfil(request):
 
 @login_required
 def pesquisar(request):
-    query = request.GET.get('title')
-    category = request.GET.get('category')
-    condition = request.GET.get('condition')
+    if request.method == 'POST':
+        # Lógica para alternar o favorito
+        item_id = request.POST.get('item_id')
+        item = get_object_or_404(Doacao, pk=item_id)
+        favorito, created = Favorito.objects.get_or_create(usuario=request.user, doacao=item)
+        if not created:
+            favorito.delete()  # Se já existia, deleta
+            message = 'Favorito removido'
+        else:
+            message = 'Favorito adicionado'
+        return JsonResponse({'message': message})
 
-    resultados = Doacao.objects.none()  # Inicia sem nenhum resultado
+    elif request.method == 'GET':
+        query = request.GET.get('title')
+        category = request.GET.get('category')
+        condition = request.GET.get('condition')
 
-    # Verifica se todos os parâmetros foram fornecidos
-    if query and category and condition:
-        resultados = Doacao.objects.filter(item_name__icontains=query, category=category, condition=condition)
+        # Preparando a query base
+        resultados = Doacao.objects.all()
 
-    return render(request, 'pesquisar.html', {'resultados': resultados})
+        # Aplicando filtros conforme os parâmetros
+        if query:
+            resultados = resultados.filter(item_name__icontains=query)
+        if category:
+            resultados = resultados.filter(category=category)
+        if condition:
+            resultados = resultados.filter(condition=condition)
+
+        # Verificando se cada item está marcado como favorito pelo usuário
+        for item in resultados:
+            item.is_favorite = Favorito.objects.filter(usuario=request.user, doacao=item).exists()
+
+        return render(request, 'pesquisar.html', {'resultados': resultados})
+
+    # Se não for GET nem POST, retorna erro
+    return JsonResponse({'error': 'Método não permitido'}, status=405)
 
 
 @login_required
@@ -166,15 +195,6 @@ def categoria_roupas(request):
     itens = Doacao.objects.filter(category='clothes')
     return render(request, 'categoria_roupas.html', {'resultados': itens})
 
-from django.shortcuts import render, redirect
-from django.views import View
-from .models import Agendamento, Doacao
-from django.contrib import messages
-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from .models import Doacao, Agendamento
 
 @login_required
 def agendamento_view(request):
@@ -200,10 +220,6 @@ def agendamento_view(request):
             return redirect('agendamento')
 
 
-
-from django.shortcuts import render
-from .models import Doacao
-
 @login_required 
 def avaliacoes(request):
     doacoes_com_avaliacoes = Doacao.objects.filter(avaliacao__isnull=False).prefetch_related('avaliacao')
@@ -212,10 +228,6 @@ def avaliacoes(request):
         'doacoes_com_avaliacoes': doacoes_com_avaliacoes,
         'doacoes_sem_avaliacoes': doacoes_sem_avaliacoes
     })
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import Doacao, Avaliacao
 
 @login_required
 def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL

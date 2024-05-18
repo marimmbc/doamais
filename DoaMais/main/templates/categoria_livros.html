@@ -20,8 +20,7 @@
           <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
           <div>
               <p><strong>Nome:</strong> {{ item.item_name }}</p>
-              <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
-              <p><strong>Estado:</strong> {{ item.get_condition_display }}</p>
+              <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
           </div>
       </div>
       {% if forloop.counter|divisibleby:4 %}
@@ -31,5 +30,6 @@
   </div>
 
     <script src="../static/js/loadNavbar.js"></script>
+    <script src="{% static '../static/js/favoritar.js' %}"></script>
 </body>
 </html>

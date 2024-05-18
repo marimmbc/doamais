@@ -48,7 +48,8 @@
                 <label for="observacao">Observação (opcional):</label>
                 <textarea id="observacao" name="observacao"></textarea>
             </div>
-            <button type="submit">Enviar Avaliação</button>
+            <button type="submit">Concluir</button>
+            <button type="button" onclick="location.href='{% url 'avaliacoes' %}'">Voltar</button>
         </form>
     </div>
     <script src="../static/js/loadNavbar.js"></script>
