@@ -13,6 +13,8 @@
 <body>
   {% include 'navbar.html' %}
 
+  {% include 'navbar.html' %}
+
   <header>
     <h1>Avaliações</h1>
   </header>
@@ -31,7 +33,7 @@
         <td>
           {% if item.avaliacao %}
             <div class="stars-container">
-              {% for i in 1|range:6 %}
+              {% for i in range_1_to_6 %}
                 <span class="star{% if i <= item.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
               {% endfor %}
             </div>

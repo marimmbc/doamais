@@ -18,9 +18,10 @@
     <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
     <p><strong>Estado de Conservação:</strong> {{ item.get_condition_display }}</p>
     <p><strong>Descrição:</strong> {{ item.description }}</p>
-    <p><strong>Usuário:</strong> {{ item.requester.username }}</p> <!-- Ajustar conforme seu modelo -->
-    <p><strong>Localização:</strong> {{ item.location }}</p> <!-- Ajustar conforme seu modelo -->
+    <p><strong>Usuário:</strong> {{ item.requester.username }}</p> 
+    <p><strong>Localização:</strong> {{ item.location }}</p> 
     <button onclick="location.href='{% url 'solicitar_item' item.id %}'">Solicitar Item</button>
+    <button onclick="history.back()">Voltar</button>
   </div>
 
   <script src="../static/js/loadNavbar.js"></script>

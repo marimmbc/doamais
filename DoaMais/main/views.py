@@ -116,10 +116,7 @@ def pesquisar(request):
 
 @login_required
 def itens_solicitados(request):
-    # Busca todas as solicitações feitas, incluindo os dados da doação associada
     solicitacoes = Solicitacao.objects.select_related('doacao').all()
-
-    # Adicionando informações sobre o agendamento mais recente para cada solicitação
     for solicitacao in solicitacoes:
         agendamentos = Agendamento.objects.filter(doacao=solicitacao.doacao).order_by('-data_agendamento', '-hora_agendamento')
         solicitacao.agendamento_recente = agendamentos.first() if agendamentos.exists() else None
@@ -226,7 +223,8 @@ def avaliacoes(request):
     doacoes_sem_avaliacoes = Doacao.objects.filter(avaliacao__isnull=True)
     return render(request, 'avaliacoes.html', {
         'doacoes_com_avaliacoes': doacoes_com_avaliacoes,
-        'doacoes_sem_avaliacoes': doacoes_sem_avaliacoes
+        'doacoes_sem_avaliacoes': doacoes_sem_avaliacoes,
+        'range_1_to_6': range(1, 6)  # Adicionando o range ao contexto para uso no template
     })
 
 @login_required
@@ -262,7 +260,7 @@ def descricao_item(request, item_id):
     item = get_object_or_404(Doacao, pk=item_id)
     if request.method == 'POST':
         Solicitacao.objects.create(doacao=item, solicitante=request.user)
-        return redirect('alguma_url_de_sucesso')  # Redirecionar para uma página de confirmação ou de volta à lista de itens
+        return redirect('itens_solicitados')  # Redirecionar para uma página de confirmação ou de volta à lista de itens
 
     return render(request, 'descricao_item.html', {'item': item})
 
@@ -299,3 +297,8 @@ def favoritos(request):
     # Obtendo todos os favoritos do usuário logado
     favoritos = Favorito.objects.filter(usuario=request.user).select_related('doacao')
     return render(request, 'favoritos.html', {'favoritos': favoritos})
+
+@login_required
+def descricao_minhas_doacoes(request, item_id):
+    item = get_object_or_404(Doacao, pk=item_id, donor=request.user)
+    return render(request, 'descricao_minhas_doacoes.html', {'item': item})

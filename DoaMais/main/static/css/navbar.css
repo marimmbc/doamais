@@ -127,7 +127,7 @@ body {
 
 .nav-links .dropdown .dropdown-menu {
   display: none;
-  position: absolute;
+  position: relative;
   left: 0;
   top: 100%;  
   background-color: #4a98f7;
@@ -135,11 +135,13 @@ body {
   z-index: 105;
   min-width: 160px;
   border-radius: 5px;
-  width: max-content;  
+  width: max-content; 
+  padding-bottom: 10px; /* Aumenta o padding na parte inferior para manter o dropdown ativo */ 
 }
 
 .nav-links .dropdown:hover .dropdown-menu {
   display: block;
+  margin-top: -10px;
 }
 
 .nav-links .dropdown .dropdown-menu li a {

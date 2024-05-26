@@ -26,10 +26,10 @@
         <a href="{% url 'perfil' %}" class="button-like-link">Perfil</a>
       </li>
       <li>
-        <a href="{% url 'meus_itens_solicitados' %}" class="button-like-link">Meus itens Solicitados</a>
+        <a href="{% url 'itens_solicitados' %}" class="button-like-link">Meus itens Solicitados</a>
       </li>
       <li>
-        <a href="{% url 'solicitacoes_recebidas' %}" class="button-like-link">Avaliações</a>
+        <a href="{% url 'avaliacoes' %}" class="button-like-link">Avaliações</a>
       </li>
       <li>
         <a href="{% url 'solicitacoes_recebidas' %}" class="button-like-link">Solicitações Recebidas</a>
@@ -42,10 +42,10 @@
         <i class='uil uil-angle-down dropdown-arrow'></i>
         <ul class="dropdown-menu">
           <li><a href="{% url 'categoria_roupas' %}">Roupas</a></li>
-          <li><a href="#">Móveis</a></li>
-          <li><a href="#">Eletrônicos</a></li>
-          <li><a href="#">Brinquedos</a></li>
-          <li><a href="#">Livros</a></li>
+          <li><a href="{% url 'categoria_moveis' %}">Móveis</a></li>
+          <li><a href="{% url 'categoria_eletronicos' %}">Eletrônicos</a></li>
+          <li><a href="{% url 'categoria_brinquedos' %}">Brinquedos</a></li>
+          <li><a href="{% url 'categoria_livros' %}">Livros</a></li>
         </ul>
       </li>      
       <li>
