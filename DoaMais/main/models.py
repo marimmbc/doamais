@@ -89,16 +89,14 @@ class Avaliacao(models.Model):
     def __str__(self):
         return f"Avaliação #{self.id} - {self.condicao_item} estrelas para condição do item"
 
-
-class Solicitacao(models.Model):
-    doacao = models.ForeignKey('Doacao', on_delete=models.CASCADE, related_name='solicitacoes')
-    solicitante = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='solicitacoes_feitas')
-    data_solicitacao = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, choices=(('pendente', 'Pendente'), ('aceito', 'Aceito'), ('recusado', 'Recusado')), default='pendente')
-
+class SolicitacaoRecebida(models.Model):
+    doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='solicitacoes_recebidas')
+    solicitante = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='solicitacoes_recebidas')
+    data_agendada = models.DateField(blank=True, null=True)
+    hora_agendada = models.TimeField(blank=True, null=True)
+    
     def __str__(self):
-        return f"{self.solicitante.username} solicitou {self.doacao.item_name} em {self.data_solicitacao.strftime('%Y-%m-%d')}"
-
+        return f"{self.solicitante.username} - {self.doacao.item_name}"
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favoritos')

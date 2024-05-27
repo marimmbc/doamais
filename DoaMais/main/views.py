@@ -11,7 +11,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 # Importações de modelos específicos do seu aplicativo
-from .models import Doacao, Avaliacao, User, Solicitacao, Agendamento, Favorito
+from .models import Doacao, Avaliacao, User, SolicitacaoRecebida, Agendamento, Favorito
 
 
 def inicio(request):
@@ -76,37 +76,26 @@ def editar_perfil(request):
 
 @login_required
 def pesquisar(request):
-    if request.method == 'POST':
-        # Lógica para alternar o favorito
-        item_id = request.POST.get('item_id')
-        item = get_object_or_404(Doacao, pk=item_id)
-        favorito, created = Favorito.objects.get_or_create(usuario=request.user, doacao=item)
-        if not created:
-            favorito.delete()  # Se já existia, deleta
-            message = 'Favorito removido'
-        else:
-            message = 'Favorito adicionado'
-        return JsonResponse({'message': message})
+    resultados = None  # Começa sem nenhum resultado
 
-    elif request.method == 'GET':
+    if request.method == 'GET':
         query = request.GET.get('title')
         category = request.GET.get('category')
         condition = request.GET.get('condition')
 
-        # Preparando a query base
-        resultados = Doacao.objects.all()
+        if query or category or condition:  # Só faz a consulta se algum parâmetro de busca foi fornecido
+            resultados = Doacao.objects.all()
 
-        # Aplicando filtros conforme os parâmetros
-        if query:
-            resultados = resultados.filter(item_name__icontains=query)
-        if category:
-            resultados = resultados.filter(category=category)
-        if condition:
-            resultados = resultados.filter(condition=condition)
+            if query:
+                resultados = resultados.filter(item_name__icontains=query)
+            if category:
+                resultados = resultados.filter(category=category)
+            if condition:
+                resultados = resultados.filter(condition=condition)
 
-        # Verificando se cada item está marcado como favorito pelo usuário
-        for item in resultados:
-            item.is_favorite = Favorito.objects.filter(usuario=request.user, doacao=item).exists()
+            # Verificar se cada item está marcado como favorito pelo usuário
+            for item in resultados:
+                item.is_favorite = Favorito.objects.filter(usuario=request.user, doacao=item).exists()
 
         return render(request, 'pesquisar.html', {'resultados': resultados})
 
@@ -114,9 +103,10 @@ def pesquisar(request):
     return JsonResponse({'error': 'Método não permitido'}, status=405)
 
 
+
 @login_required
 def itens_solicitados(request):
-    solicitacoes = Solicitacao.objects.select_related('doacao').all()
+    solicitacoes = SolicitacaoRecebida.objects.select_related('doacao').all()
     for solicitacao in solicitacoes:
         agendamentos = Agendamento.objects.filter(doacao=solicitacao.doacao).order_by('-data_agendamento', '-hora_agendamento')
         solicitacao.agendamento_recente = agendamentos.first() if agendamentos.exists() else None
@@ -259,7 +249,7 @@ def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL
 def descricao_item(request, item_id):
     item = get_object_or_404(Doacao, pk=item_id)
     if request.method == 'POST':
-        Solicitacao.objects.create(doacao=item, solicitante=request.user)
+        SolicitacaoRecebida.objects.create(doacao=item, solicitante=request.user)
         return redirect('itens_solicitados')  # Redirecionar para uma página de confirmação ou de volta à lista de itens
 
     return render(request, 'descricao_item.html', {'item': item})
@@ -274,23 +264,22 @@ def excluir_doacao(request, doacao_id):
 
 @login_required
 def solicitacoes_recebidas(request):
-    # Busca todas as doações que têm solicitações e que o usuário logado é o donor
-    doacoes_com_solicitacoes = Doacao.objects.filter(donor=request.user).distinct()
+    solicitacoes = SolicitacaoRecebida.objects.filter(doacao__donor=request.user, data_agendada__isnull=True)
 
     itens = []
-    for doacao in doacoes_com_solicitacoes:
-        # Filtra solicitações pendentes para essa doação
-        solicitacoes_pendentes = doacao.solicitacoes.filter(status='pendente')
-        show_agendamento_button = solicitacoes_pendentes.exists()
-
-        # Adiciona a doação e a condição do botão para o contexto
+    for solicitacao in solicitacoes:
+        agendamento_info = None
+        if solicitacao.data_agendada and solicitacao.hora_agendada:
+            agendamento_info = f"{solicitacao.data_agendada} às {solicitacao.hora_agendada}"
         itens.append({
-            'doacao': doacao,
-            'show_agendamento_button': show_agendamento_button,
-            'solicitacoes_pendentes': solicitacoes_pendentes  # Opcional, se você quiser mostrar detalhes das solicitações
+            'doacao': solicitacao.doacao,
+            'show_agendamento_button': True,
+            'agendamento_info': agendamento_info,
         })
 
     return render(request, 'solicitacoes_recebidas.html', {'itens': itens})
+
+
 
 @login_required
 def favoritos(request):

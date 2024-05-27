@@ -48,17 +48,18 @@
     </div>
 
     <div class="search-results">
-        {% for item in resultados %}
-        <div class="search-item">
-            <img src="{{ item.image }}" alt="{{ item.item_name }}">
-            <div>
-                <p> {{ item.item_name }}</p>
-                <!-- Ícone de estrela para marcar como favorito -->
-                <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
+            {% for item in resultados %}
+            <div class="search-item">
+                <img src="{{ item.image.url }}" alt="{{ item.item_name }}" style="width:100px; height:100px;">
+                <div>
+                    <p> {{ item.item_name }}</p>
+                    <!-- Ícone de estrela para marcar como favorito -->
+                    <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
+                </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
     </div>
+
 
     <script src="../static/js/loadNavbar.js"></script>
     <script src="{% static '../static/js/favoritar.js' %}"></script>

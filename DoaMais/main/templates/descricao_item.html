@@ -20,7 +20,10 @@
     <p><strong>Descrição:</strong> {{ item.description }}</p>
     <p><strong>Usuário:</strong> {{ item.requester.username }}</p> 
     <p><strong>Localização:</strong> {{ item.location }}</p> 
-    <button onclick="location.href='{% url 'solicitar_item' item.id %}'">Solicitar Item</button>
+    <form action="{% url 'itens_solicitados' item.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Solicitar Item</button>
+    </form>
     <button onclick="history.back()">Voltar</button>
   </div>
 

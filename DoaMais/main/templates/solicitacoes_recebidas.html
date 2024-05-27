@@ -24,7 +24,7 @@
         <th>Item</th>
         <th>Categoria</th>
         <th>Estado</th>
-        <th>Ação</th>
+        <th>Agendamento</th>
       </tr>
     </thead>
     <tbody>
@@ -36,13 +36,16 @@
         <td>{{ item.doacao.get_condition_display }}</td>
         <td>
           {% if item.show_agendamento_button %}
-            <button type="button" onclick="window.location.href='{% url 'agendamento' %}'">Agendar</button>
+            <button onclick="window.location.href='{% url 'agendamento' item.doacao.id %}'">Agendar</button>
+          {% else %}
+            <span>{{ item.agendamento_info }}</span>
           {% endif %}
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+
 
   <script src="../static/js/loadNavbar.js"></script>
 </body>
