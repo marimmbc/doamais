@@ -10,6 +10,49 @@
     <link rel="stylesheet" href="../static/css/categorias.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <script>
+        window.onload = function() {
+            const csrftoken = getCookie('csrftoken');
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            document.querySelectorAll('.star-rating .star').forEach(function(star) {
+                star.addEventListener('click', function() {
+                    const itemId = this.parentElement.getAttribute('data-item-id');
+                    fetch("{% url 'categoria_livros' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken
+                        },
+                        body: JSON.stringify({ 'item_id': itemId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.favorited) {
+                            this.classList.add('selected');
+                        } else {
+                            this.classList.remove('selected');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        }
+      </script>
 </head>
 <body>
   {% include 'navbar.html' %}
@@ -21,8 +64,8 @@
         <img src="{{ item.image.url }}" alt="{{ item.item_name }}" onclick="window.location.href='{% url 'descricao_item' item.id %}'" style="cursor: pointer;">
         <div>
             <p><strong>Nome:</strong> {{ item.item_name }}</p>
-            <div class="star-rating" data-item-id="{{ item.id }}" onclick="toggleFavorito({{ item.id }})">
-                <div id="star_{{ item.id }}" class="star">&#9734;</div>
+            <div class="star-rating" data-item-id="{{ item.id }}">
+                <span class="star{% if item.is_favorite %} selected{% endif %}" title="Favoritar">&#9733;</span>
             </div>
         </div>
     </div>

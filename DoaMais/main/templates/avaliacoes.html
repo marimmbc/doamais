@@ -1,53 +1,53 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{% static 'imagens/favicon.png' %}" type="image/x-icon">
   <title>Avaliações</title>
-  <link rel="stylesheet" href="../static/css/avaliacoes.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <link rel="stylesheet" href="{% static 'css/avaliacoes.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
   {% include 'navbar.html' %}
 
-  <header>
-    <h1>Avaliações</h1>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Avaliações</h1>
+    </header>
 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Avaliação</th>
-          <th>Observação</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in itens %}
-        <tr>
-          <td>{{ item.title }}</td>
-          <td>
-            {% if item.avaliacao %}
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Avaliação</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for doacao in doacoes_com_avaliacoes %}
+          <tr>
+            <td>{{ doacao.item_name }}</td>
+            <td>
               <div class="stars-container">
                 {% for i in range_1_to_6 %}
-                  <span class="star{% if i <= item.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
+                  <span class="star{% if i <= doacao.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
                 {% endfor %}
               </div>
-            {% else %}
-              <button type="button" onclick="window.location.href='{% url 'fazer_avaliacao' item.id %}'">Fazer Avaliação</button>
-            {% endif %}
-          </td>
-          <td>{{ item.avaliacao.observacao }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+            </td>
+            <td>{{ doacao.avaliacao.observacao }}</td>
+          </tr>
+          {% empty %}
+            <tr><td colspan="3">Nenhuma avaliação disponível.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <script src="../static/js/loadNavbar.js"></script>
+  <script src="{% static 'js/loadNavbar.js' %}"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@
         <th>Item</th>
         <th>Data</th>
         <th>Hora</th>
+        <th>Avaliar</th>
       </tr>
     </thead>
     <tbody>
@@ -45,9 +46,15 @@
             Não agendado
           {% endif %}
         </td>
+        <td>
+          {% if solicitacao.agendamento_recente and not solicitacao.doacao.avaliacao %}
+            <a href="{% url 'fazendo_avaliacao' solicitacao.doacao.id %}" class="btn btn-primary">Avaliar</a>
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
+    
   </table>
 
   <script src="{% static 'js/loadNavbar.js' %}"></script>

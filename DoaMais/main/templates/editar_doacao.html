@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'imagens/favicon.png' %}" type="image/x-icon">
+  <title>Editar Doação</title>
+  <link rel="stylesheet" href="{% static 'css/editar_doacao.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="request-item-container">
+        <div class="form-container">
+          <form id="itemRequestForm" method="POST" action="{% url 'editar_doacao' doacao.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="image-upload-container">
+                    <input type="file" id="imageUpload" name="image" accept="image/*">
+                    {% if doacao.image %}
+                    <img src="{{ doacao.image.url }}" alt="{{ doacao.item_name }}" style="width: 150px; height: auto;">
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    <label for="item_name">Título do Item:</label>
+                    <input type="text" id="item_name" name="item_name" value="{{ doacao.item_name }}" placeholder="Insira o título do item">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <label for="category">Categoria:</label>
+                    <select id="category" name="category">
+                        <option value="">Selecione uma opção</option>
+                        <option value="clothes" {% if doacao.category == 'clothes' %}selected{% endif %}>Roupas</option>
+                        <option value="furniture" {% if doacao.category == 'furniture' %}selected{% endif %}>Móveis</option>
+                        <option value="electronics" {% if doacao.category == 'electronics' %}selected{% endif %}>Eletrônicos</option>
+                        <option value="toy" {% if doacao.category == 'toy' %}selected{% endif %}>Brinquedos</option>
+                        <option value="book" {% if doacao.category == 'book' %}selected{% endif %}>Livros</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="condition">Estado de Conservação:</label>
+                    <select id="condition" name="condition">
+                        <option value="">Selecione uma opção</option>
+                        <option value="new" {% if doacao.condition == 'new' %}selected{% endif %}>Novo</option>
+                        <option value="used_good" {% if doacao.condition == 'used_good' %}selected{% endif %}>Usado - Bom</option>
+                        <option value="used_acceptable" {% if doacao.condition == 'used_acceptable' %}selected{% endif %}>Usado - Aceitável</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group full-width">
+                <label for="description">Descrição:</label>
+                <textarea id="description" name="description">{{ doacao.description }}</textarea>
+            </div>
+            <div class="buttons">
+                <button type="button" onclick="window.location.href='{% url 'minhas_doacoes' %}'">Cancelar</button>
+                <button type="submit" id="submit">Salvar</button>
+                <button type="submit" name="delete" id="delete">Excluir</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    
+    <script src="{% static 'js/loadNavbar.js' %}"></script>
+</body>
+</html>

@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.star-rating').forEach(function(star) {
+    const csrftoken = getCookie('csrftoken');
+
+    document.querySelectorAll('.star-rating .star').forEach(function(star) {
         star.addEventListener('click', function() {
-            const itemId = this.getAttribute('data-item-id');
-            fetch("{% url 'favoritos' %}", {
+            const itemId = this.parentElement.getAttribute('data-item-id');
+            fetch("{% url 'categoria_roupas' %}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
+                    'X-CSRFToken': csrftoken
                 },
                 body: JSON.stringify({ 'item_id': itemId })
             })
@@ -18,11 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.classList.remove('selected');
                 }
             })
-            .catch(error => {
-                console.error('Error:', error);
-                // Reverter visualmente o estado se houver erro na atualização
-                this.classList.toggle('selected');
-            });
         });
     });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 });

@@ -1,81 +1,62 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{% static 'imagens/favicon.png' %}" type="image/x-icon">
     <title>Avaliando</title>
-    <link rel="stylesheet" href="../static/css/fazendo_avaliacao.css">
-    <link rel="stylesheet" href="../static/css/navbar.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="{% static 'css/fazendo_avaliacao.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
     <div class="container">
         <h1>Avaliação</h1>
-        <form action="{% url 'submit_avaliacao' %}" method="post">
+        <form action="{% url 'fazendo_avaliacao' item_id=doacao.id %}" method="post">
             {% csrf_token %}
+            <!-- Disponibilidade de Entrega/Retirada -->
             <div class="rating-group">
                 <label>Disponibilidade de Entrega/Retirada:</label>
                 <div class="star-rating">
-                    <input type="radio" id="disponibilidade_5" name="disponibilidade_entrega" value="5" required />
-                    <label for="disponibilidade_5" title="5 estrelas"></label>
-                    <input type="radio" id="disponibilidade_4" name="disponibilidade_entrega" value="4" required />
-                    <label for="disponibilidade_4" title="4 estrelas"></label>
-                    <input type="radio" id="disponibilidade_3" name="disponibilidade_entrega" value="3" required />
-                    <label for="disponibilidade_3" title="3 estrelas"></label>
-                    <input type="radio" id="disponibilidade_2" name="disponibilidade_entrega" value="2" required />
-                    <label for="disponibilidade_2" title="2 estrelas"></label>
-                    <input type="radio" id="disponibilidade_1" name="disponibilidade_entrega" value="1" required />
-                    <label for="disponibilidade_1" title="1 estrela"></label>
+                    {% for i in stars_range %}
+                    <input type="radio" id="disponibilidade_{{ i }}" name="disponibilidade_entrega" value="{{ i }}" required />
+                    <label for="disponibilidade_{{ i }}" title="{{ i }} estrelas">&#9733;</label>
+                    {% endfor %}
                 </div>
             </div>
+            <!-- Condição do Item -->
             <div class="rating-group">
                 <label>Condição do Item:</label>
                 <div class="star-rating">
-                    <input type="radio" id="condicao_5" name="condicao_item" value="5" required />
-                    <label for="condicao_5" title="5 estrelas"></label>
-                    <input type="radio" id="condicao_4" name="condicao_item" value="4" required />
-                    <label for="condicao_4" title="4 estrelas"></label>
-                    <input type="radio" id="condicao_3" name="condicao_item" value="3" required />
-                    <label for="condicao_3" title="3 estrelas"></label>
-                    <input type="radio" id="condicao_2" name="condicao_item" value="2" required />
-                    <label for="condicao_2" title="2 estrelas"></label>
-                    <input type="radio" id="condicao_1" name="condicao_item" value="1" required />
-                    <label for="condicao_1" title="1 estrela"></label>
+                    {% for i in stars_range %}
+                    <input type="radio" id="condicao_{{ i }}" name="condicao_item" value="{{ i }}" required />
+                    <label for="condicao_{{ i }}" title="{{ i }} estrelas">&#9733;</label>
+                    {% endfor %}
                 </div>
             </div>
+            <!-- Higiene do Item -->
             <div class="rating-group">
                 <label>Higiene do Item:</label>
                 <div class="star-rating">
-                    <input type="radio" id="higiene_5" name="higiene_item" value="5" required />
-                    <label for="higiene_5" title="5 estrelas"></label>
-                    <input type="radio" id="higiene_4" name="higiene_item" value="4" required />
-                    <label for="higiene_4" title="4 estrelas"></label>
-                    <input type="radio" id="higiene_3" name="higiene_item" value="3" required />
-                    <label for="higiene_3" title="3 estrelas"></label>
-                    <input type="radio" id="higiene_2" name="higiene_item" value="2" required />
-                    <label for="higiene_2" title="2 estrelas"></label>
-                    <input type="radio" id="higiene_1" name="higiene_item" value="1" required />
-                    <label for="higiene_1" title="1 estrela"></label>
+                    {% for i in stars_range %}
+                    <input type="radio" id="higiene_{{ i }}" name="higiene_item" value="{{ i }}" required />
+                    <label for="higiene_{{ i }}" title="{{ i }} estrelas">&#9733;</label>
+                    {% endfor %}
                 </div>
             </div>
+            <!-- Adequação à Descrição -->
             <div class="rating-group">
                 <label>Adequação à Descrição:</label>
                 <div class="star-rating">
-                    <input type="radio" id="adequacao_5" name="adequacao_descricao" value="5" required />
-                    <label for="adequacao_5" title="5 estrelas"></label>
-                    <input type="radio" id="adequacao_4" name="adequacao_descricao" value="4" required />
-                    <label for="adequacao_4" title="4 estrelas"></label>
-                    <input type="radio" id="adequacao_3" name="adequacao_descricao" value="3" required />
-                    <label for="adequacao_3" title="3 estrelas"></label>
-                    <input type="radio" id="adequacao_2" name="adequacao_descricao" value="2" required />
-                    <label for="adequacao_2" title="2 estrelas"></label>
-                    <input type="radio" id="adequacao_1" name="adequacao_descricao" value="1" required />
-                    <label for="adequacao_1" title="1 estrela"></label>
+                    {% for i in stars_range %}
+                    <input type="radio" id="adequacao_{{ i }}" name="adequacao_descricao" value="{{ i }}" required />
+                    <label for="adequacao_{{ i }}" title="{{ i }} estrelas">&#9733;</label>
+                    {% endfor %}
                 </div>
             </div>
+            <!-- Observação (opcional) -->
             <div class="form-group">
                 <label for="observacao">Observação (opcional):</label>
                 <textarea id="observacao" name="observacao"></textarea>
@@ -84,6 +65,7 @@
             <button type="button" onclick="location.href='{% url 'avaliacoes' %}'">Voltar</button>
         </form>
     </div>
-    <script src="../static/js/loadNavbar.js"></script>
+    <script src="{% static 'js/loadNavbar.js' %}"></script>
+    <script src="{% static 'js/avaliando.js' %}"></script>
 </body>
 </html>

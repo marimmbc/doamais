@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{% static 'imagens/favicon.png' %}" type="image/x-icon">
   <title>Perfil</title>
-  <link rel="stylesheet" href="../static/css/perfil.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -17,21 +18,25 @@
         </header>
         
         <div class="profile-info">
-            <img class="avatar" src="{{ user.photo.url }}" alt="Avatar Perfil">
+            {% if user.userprofile.photo %}
+                <img class="avatar" src="{{ user.userprofile.photo.url }}" >
+            {% else %}
+                <img class="avatar" src="{% static 'imagens/default-avatar.png' %}" >
+            {% endif %}
             <div class="info-text">
                 <p class="first_name">{{ user.first_name }}</p>
                 <p class="last_name">{{ user.last_name }}</p>
                 <p class="username">{{ user.username }}</p>
                 <p class="email">{{ user.email }}</p>
-                <p class="location">{{ user.location }}</p>
+                <p class="location">{{ user.userprofile.location }}</p>
                 <div class="preferences">
                     <h3>Preferências</h3>
                     <ul>
-                        {% if user.roupa %}<li>Roupa</li>{% endif %}
-                        {% if user.eletronico %}<li>Eletrônico</li>{% endif %}
-                        {% if user.movel %}<li>Móvel</li>{% endif %}
-                        {% if user.livro %}<li>Livro</li>{% endif %}
-                        {% if user.brinquedo %}<li>Brinquedo</li>{% endif %}
+                        {% if user.userprofile.roupa %}<li>Roupa</li>{% endif %}
+                        {% if user.userprofile.eletronico %}<li>Eletrônico</li>{% endif %}
+                        {% if user.userprofile.movel %}<li>Móvel</li>{% endif %}
+                        {% if user.userprofile.livro %}<li>Livro</li>{% endif %}
+                        {% if user.userprofile.brinquedo %}<li>Brinquedo</li>{% endif %}
                     </ul>
                 </div>
             </div>
@@ -42,7 +47,6 @@
         </div>
     </div>
     
-    <script src="../static/js/loadNavbar.js"></script>
-
+    <script src="{% static 'js/loadNavbar.js' %}"></script>
 </body>
 </html>

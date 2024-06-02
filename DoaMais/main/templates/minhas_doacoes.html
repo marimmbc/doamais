@@ -22,16 +22,19 @@
         <th>Item</th>
         <th>Categoria</th>
         <th>Estado</th>
-
+        <th>Editar</th> <!-- Nova coluna para ações -->
       </tr>
     </thead>
     <tbody>
       {% for doacao in doacoes %}
+      {% if not doacao.avaliacao %}
       <tr>
         <td><a href="{% url 'descricao_minhas_doacoes' doacao.id %}">{{ doacao.item_name }}</a></td>
         <td>{{ doacao.get_category_display }}</td>
         <td>{{ doacao.get_condition_display }}</td>
+        <td><a href="{% url 'editar_doacao' doacao.id %}">Editar</a></td> <!-- Link para editar doação -->
       </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>

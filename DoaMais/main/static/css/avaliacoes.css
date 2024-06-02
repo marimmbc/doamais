@@ -3,108 +3,46 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding-top: 40px; /* Ajusta o padding para posicionar o container no topo */
-    background-color: white;
+    padding: 0;
+    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha os itens ao topo */
-    min-height: 100vh; /* Altura total da viewport */
-}
-
-header {
-    width: 100%;
-    text-align: center; /* Centraliza o título */
-    margin-bottom: 20px; /* Espaço abaixo do header */
-}
-
-h1 {
-    font-size: 24px; /* Texto maior para o header */
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    background-color: #fff; /* Fundo branco para a área do formulário */
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
-    width: 50%; /* Ajuste conforme a preferência */
-    max-width: 600px; /* Largura máxima */
-    box-sizing: border-box; /* Inclui padding na largura */
+    width: 80%;  /* Ajustado para maior largura */
+    max-width: 1000px;  /* Aumentado para acomodar uma tabela maior */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-form {
-    display: flex;
-    flex-direction: column; /* Empilha os elementos do formulário */
-}
-
-.rating-group {
-    margin-bottom: 15px; /* Espaço entre os grupos */
-}
-
-.rating-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold; /* Fonte em negrito para os labels */
-}
-
-.star-rating {
-    direction: ltr; /* Direção da esquerda para a direita */
-    display: flex; /* Alinha as estrelas horizontalmente */
-    font-size: 24px; /* Tamanho da fonte das estrelas */
-}
-
-.star-rating input[type="radio"] {
-    display: none;
-}
-
-.star-rating label {
-    width: 30px;
-    height: 30px;
-    background: #ddd; /* Cor cinza para estrelas não preenchidas */
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    cursor: pointer;
-    margin-right: 5px; /* Espaço entre estrelas */
-}
-
-.star-rating input[type="radio"]:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-    background: #f5c518; /* Cor amarela para estrelas preenchidas */
-}
-
-.form-group {
+header {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-textarea {
-    width: 100%; /* Largura total */
-    height: 100px; /* Altura definida */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none; /* Desabilita o redimensionamento */
+table {
+    width: 100%;  /* Tabela ocupa toda a largura do container */
+    border-collapse: collapse;  /* Remove espaços entre as células */
 }
 
-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff; /* Cor do botão */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+th, td {
+    text-align: left;
+    padding: 8px;  /* Espaçamento dentro das células */
+    border-bottom: 1px solid #ddd;  /* Linha entre as linhas */
 }
 
-button:hover {
-    background-color: #0056b3; /* Escurece o botão ao passar o mouse */
+th {
+    background-color: #f8f8f8;  /* Cor de fundo para cabeçalho da tabela */
 }
 
-button[type="submit"] {
-    margin-right: 10px; /* Espaço entre os botões */
+.star {
+    color: grey;  /* Cor padrão das estrelas */
 }
 
-button[type="button"] {
-    background-color: #6c757d; /* Cor diferente para botões gerais */
-}
-
-button[type="button"]:hover {
-    background-color: #545b62; /* Escurece o botão geral ao passar o mouse */
+.star.filled {
+    color: gold;  /* Cor das estrelas preenchidas */
 }

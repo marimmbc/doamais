@@ -1,14 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
     def __str__(self):
         return self.user.username
     
@@ -38,7 +38,6 @@ class MyUserManager(BaseUserManager):
 
         return self.create_user(email, username, password, **extra_fields)
 
-
 class Doacao(models.Model):
 
     CATEGORY_CHOICES = [
@@ -60,6 +59,7 @@ class Doacao(models.Model):
     condition = models.CharField(max_length=50, choices=CONDITION_CHOICES)
     donor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doacoes')
     location = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.item_name} - {self.category}"
@@ -97,9 +97,11 @@ class SolicitacaoRecebida(models.Model):
     def __str__(self):
         return f"{self.solicitante.username} - {self.doacao.item_name}"
 
+
 class Favorito(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favoritos')
-    doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='marcados_como_favorito')
+    doacao = models.ForeignKey('Doacao', on_delete=models.CASCADE, related_name='marcados_como_favorito')
 
     def __str__(self):
         return f'{self.usuario.username} favoritou {self.doacao.item_name}'
+

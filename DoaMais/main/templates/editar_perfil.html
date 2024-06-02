@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{% static 'imagens/favicon.png' %}" type="image/x-icon">
   <title>Editar Perfil</title>
-  <link rel="stylesheet" href="../static/css/editar_perfil.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="{% static 'css/editar_perfil.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
@@ -20,7 +21,11 @@
         <form class="profile-edit" method="POST" action="{% url 'editar_perfil' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="avatar-edit">
-                <img class="avatar" src="{{ user.photo.url }}" alt="Editar Foto">
+                {% if user.userprofile.photo %}
+                    <img class="avatar" src="{{ user.userprofile.photo.url }}" alt="Editar Foto">
+                {% else %}
+                    <img class="avatar" src="{% static 'imagens/default-avatar.png' %}" alt="Editar Foto">
+                {% endif %}
                 <input type="file" id="photo" name="photo" class="edit-photo">
             </div>
             <label for="first_name">Nome</label>
@@ -36,28 +41,28 @@
             <input type="email" id="email" name="email" value="{{ user.email }}">
 
             <label for="location">Localização</label>
-            <input type="text" id="location" name="location" value="{{ user.location }}">
+            <input type="text" id="location" name="location" value="{{ user.userprofile.location }}">
 
             <div class="preferences">
                 <h3>Preferências</h3>
                 <label>
-                    <input type="checkbox" name="roupa" {% if user.roupa %} checked {% endif %}>
+                    <input type="checkbox" name="roupa" {% if user.userprofile.roupa %} checked {% endif %}>
                     Roupa
                 </label>
                 <label>
-                    <input type="checkbox" name="eletronico" {% if user.eletronico %} checked {% endif %}>
+                    <input type="checkbox" name="eletronico" {% if user.userprofile.eletronico %} checked {% endif %}>
                     Eletrônico
                 </label>
                 <label>
-                    <input type="checkbox" name="movel" {% if user.movel %} checked {% endif %}>
+                    <input type="checkbox" name="movel" {% if user.userprofile.movel %} checked {% endif %}>
                     Móvel
                 </label>
                 <label>
-                    <input type="checkbox" name="livro" {% if user.livro %} checked {% endif %}>
+                    <input type="checkbox" name="livro" {% if user.userprofile.livro %} checked {% endif %}>
                     Livro
                 </label>
                 <label>
-                    <input type="checkbox" name="brinquedo" {% if user.brinquedo %} checked {% endif %}>
+                    <input type="checkbox" name="brinquedo" {% if user.userprofile.brinquedo %} checked {% endif %}>
                     Brinquedo
                 </label>
             </div>
@@ -69,6 +74,6 @@
         </form>
     </div>
     
-    <script src="../static/js/loadNavbar.js"></script>
+    <script src="{% static 'js/loadNavbar.js' %}"></script>
 </body>
 </html>

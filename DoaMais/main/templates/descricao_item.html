@@ -19,12 +19,16 @@
     <p><strong>Categoria:</strong> {{ item.get_category_display }}</p>
     <p><strong>Estado de Conservação:</strong> {{ item.get_condition_display }}</p>
     <p><strong>Descrição:</strong> {{ item.description }}</p>
-    <p><strong>Usuário:</strong> {{ user_info.username }}</p> <!-- Modificado para usar o contexto do usuário -->
-    <p><strong>Localização:</strong> {{ user_info.location }}</p> <!-- Modificado para usar o contexto do usuário -->
+    <p><strong>Usuário:</strong> {{ user_info.username }}</p>
+    <p><strong>Localização:</strong> {{ user_info.location }}</p>
+
+    {% if user_info != request.user %}
     <form action="" method="post">
       {% csrf_token %}
       <button type="submit">Solicitar Item</button>
     </form>
+    {% endif %}
+
     <button onclick="history.back()">Voltar</button>
   </div>
   <script src="{% static 'js/loadNavbar.js' %}"></script>

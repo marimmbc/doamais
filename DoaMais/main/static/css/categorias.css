@@ -54,16 +54,11 @@ h1 {
 .star-rating {
   color: grey;
   cursor: pointer;
-  font-size: 40px; /* Aumento do tamanho da fonte das estrelas */
-  display: inline-flex; /* Mantém as estrelas na mesma linha, alinhadas verticalmente */
-  margin-left: 10px; /* Espaço entre o nome do item e a estrela */
-}
-.star-rating .star {
-  display: inline-block; /* Garante que as estrelas estejam na mesma linha */
+  font-size: 30px; /* Aumento do tamanho da fonte das estrelas */
 }
 
-.star-rating.selected {
-  color: yellow; /* Muda a cor das estrelas selecionadas para amarelo */
+.star.selected {
+  color: yellow;
 }
 
 /* Clearfix para alinhamento correto após cada quatro itens */

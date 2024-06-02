@@ -35,14 +35,15 @@ header {
     width: 90px;
     height: 90px;
     margin-right: 40px;
+     /* Para garantir que a imagem mantenha suas proporções */
 }
+
 .info-text .first_name, .info-text .last_name {
     font-size: 24px; /* Tamanho da fonte igual ao <h2> */
     font-weight: normal; /* Peso da fonte igual ao <h2> */
     margin: 0; /* Remove margem para alinhamento */
     padding: 0; /* Remove padding para alinhamento */
 }
-
 
 .username {
     color: #888;
@@ -91,5 +92,3 @@ header {
 .buttons button:hover {
     background: #5a6268;
 }
-
-

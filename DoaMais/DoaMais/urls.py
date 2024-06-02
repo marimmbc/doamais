@@ -14,7 +14,7 @@ urlpatterns = [
     path('itens_solicitados/', views.itens_solicitados, name='itens_solicitados'),
     path('doar_item/', views.doar_item, name='doar_item'),
     path('minhas_doacoes/', views.minhas_doacoes, name='minhas_doacoes'),
-    path('editar_doação/<int:doacao_id>/', views.editar_doação, name='editar_doação'),
+    path('editar_doacao/<int:doacao_id>/', views.editar_doacao, name='editar_doacao'),
     path('logout/', views.LogoutWithGet.as_view(next_page='inicio'), name='logout'),
     path('categoria_brinquedos/', views.categoria_brinquedos, name='categoria_brinquedos'),
     path('categoria_eletronicos/', views.categoria_eletronicos, name='categoria_eletronicos'),
