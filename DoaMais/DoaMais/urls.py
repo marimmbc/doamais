@@ -1,6 +1,8 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 from main import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
@@ -26,4 +28,4 @@ urlpatterns = [
     path('solicitacoes_recebidas/', views.solicitacoes_recebidas, name='solicitacoes_recebidas'),
     path('favoritos/', views.favoritos, name='favoritos'),
     path('descricao_minhas_doacoes/<int:item_id>/', views.descricao_minhas_doacoes, name='descricao_minhas_doacoes'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

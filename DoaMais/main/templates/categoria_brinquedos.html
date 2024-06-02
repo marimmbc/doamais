@@ -16,18 +16,20 @@
     <h1>Brinquedos</h1>
 
     <div class="search-results">
-        {% for item in resultados %}
-        <div class="search-item" onclick="window.location.href='{% url 'descricao_item' item.id %}'">
-            <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
-            <div>
-                <p><strong>Nome:</strong> {{ item.item_name }}</p>
-                <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
-            </div>
-        </div>
-        {% if forloop.counter|divisibleby:4 %}
-        <div style="clear: both;"></div>
-        {% endif %}
-        {% endfor %}
+      {% for item in resultados %}
+      <div class="search-item">
+          <img src="{{ item.image.url }}" alt="{{ item.item_name }}" onclick="window.location.href='{% url 'descricao_item' item.id %}'" style="cursor: pointer;">
+          <div>
+              <p><strong>Nome:</strong> {{ item.item_name }}</p>
+              <div class="star-rating" data-item-id="{{ item.id }}" onclick="toggleFavorito({{ item.id }})">
+                  <div id="star_{{ item.id }}" class="star">&#9734;</div>
+              </div>
+          </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+      <div style="clear: both;"></div>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <script src="../static/js/loadNavbar.js"></script>

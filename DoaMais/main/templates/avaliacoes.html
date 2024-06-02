@@ -13,38 +13,40 @@
 <body>
   {% include 'navbar.html' %}
 
-  {% include 'navbar.html' %}
-
   <header>
     <h1>Avaliações</h1>
   </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Avaliação</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in itens %}
-      <tr>
-        <td>{{ item.title }}</td>
-        <td>
-          {% if item.avaliacao %}
-            <div class="stars-container">
-              {% for i in range_1_to_6 %}
-                <span class="star{% if i <= item.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
-              {% endfor %}
-            </div>
-          {% else %}
-            <button type="button" onclick="window.location.href='{% url 'fazer_avaliacao' item.id %}'">Fazer Avaliação</button>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Avaliação</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in itens %}
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>
+            {% if item.avaliacao %}
+              <div class="stars-container">
+                {% for i in range_1_to_6 %}
+                  <span class="star{% if i <= item.avaliacao.average_stars %} filled{% endif %}">&#9733;</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              <button type="button" onclick="window.location.href='{% url 'fazer_avaliacao' item.id %}'">Fazer Avaliação</button>
+            {% endif %}
+          </td>
+          <td>{{ item.avaliacao.observacao }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <script src="../static/js/loadNavbar.js"></script>
 </body>

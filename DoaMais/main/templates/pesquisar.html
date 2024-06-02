@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/imagens/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{% static '../static/imagens/favicon.png' %}" type="image/x-icon">
   <title>Pesquisar</title>
-  <link rel="stylesheet" href="../static/css/pesquisar.css">
-  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="{% static '../static/css/pesquisar.css' %}">
+  <link rel="stylesheet" href="{% static '../static/css/navbar.css' %}">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 </head>
 <body>
@@ -48,20 +48,25 @@
     </div>
 
     <div class="search-results">
-            {% for item in resultados %}
-            <div class="search-item">
-                <img src="{{ item.image.url }}" alt="{{ item.item_name }}" style="width:100px; height:100px;">
-                <div>
-                    <p> {{ item.item_name }}</p>
-                    <!-- Ícone de estrela para marcar como favorito -->
-                    <img src="{% if item.is_favorite %}../static/imagens/star-filled.png{% else %}../static/imagens/star-empty.png{% endif %}" class="favorite-icon" data-item-id="{{ item.id }}" alt="Favorito">
+        {% for item in resultados %}
+        <div class="search-item">
+            <a href="{% url 'descricao_item' item.id %}">
+                <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+            </a>
+            <div class="item-details">
+                <p>{{ item.item_name }}</p>
+                <div class="star-rating">
+                    <div id="star_{{ item.id }}" class="star">&#9734;</div>
                 </div>
             </div>
-            {% endfor %}
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+        <div style="clear: both;"></div>
+        {% endif %}
+        {% endfor %}
     </div>
 
-
-    <script src="../static/js/loadNavbar.js"></script>
+    <script src="{% static '../static/js/loadNavbar.js' %}"></script>
     <script src="{% static '../static/js/favoritar.js' %}"></script>
 </body>
 </html>

@@ -13,8 +13,8 @@ describe('Doação de Item', () => {
 
         // Supõe-se que o usuário será redirecionado para a página de pesquisa após o login
         // Preencher o formulário de pesquisa
-        cy.get('#title').type('primeiro teste');
-        cy.get('#category').select('clothes');
+        cy.get('#title').type('Carro de Brinquedo');
+        cy.get('#category').select('toy');
         cy.get('#condition').select('new');
 
         // Submeter o formulário de pesquisa
@@ -22,6 +22,6 @@ describe('Doação de Item', () => {
 
         // Adicionar verificações para confirmar que a página de resultados foi carregada ou que o item foi adicionado
         // Exemplo: verificar se existe algum item nos resultados da pesquisa
-        cy.get('.search-results').should('contain', 'primeiro teste');
+        cy.get('.search-results').should('contain', 'Carro de Brinquedo');
     });
 });

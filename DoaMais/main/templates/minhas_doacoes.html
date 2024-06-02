@@ -19,18 +19,16 @@
   <table>
     <thead>
       <tr>
-        <th>Imagem</th>
         <th>Item</th>
         <th>Categoria</th>
         <th>Estado</th>
-        <th>Agendamento</th>
+
       </tr>
     </thead>
     <tbody>
       {% for doacao in doacoes %}
       <tr>
-        <td><img src="{{ doacao.image.url }}" alt="Imagem do Item"></td>
-        <td>{{ doacao.item_name }}</td>
+        <td><a href="{% url 'descricao_minhas_doacoes' doacao.id %}">{{ doacao.item_name }}</a></td>
         <td>{{ doacao.get_category_display }}</td>
         <td>{{ doacao.get_condition_display }}</td>
       </tr>

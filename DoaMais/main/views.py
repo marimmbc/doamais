@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.urls import reverse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.contrib.auth import get_user_model
 
 # Importações de modelos específicos do seu aplicativo
 from .models import Doacao, Avaliacao, User, SolicitacaoRecebida, Agendamento, Favorito
@@ -63,13 +65,19 @@ def editar_perfil(request):
         user.last_name = request.POST.get('last_name')
         user.username = request.POST.get('username')
         user.email = request.POST.get('email')
-       
+        user.location = request.POST.get('location')
+
+        user.roupa = 'roupa' in request.POST
+        user.eletronico = 'eletronico' in request.POST
+        user.movel = 'movel' in request.POST
+        user.livro = 'livro' in request.POST
+        user.brinquedo = 'brinquedo' in request.POST
 
         if 'photo' in request.FILES:
             user.photo = request.FILES['photo']
 
         user.save()
-        return redirect('perfil')  
+        return redirect('perfil')  # Certifique-se de que 'perfil' é o nome correto para a URL do perfil
 
     return render(request, 'editar_perfil.html', {'user': user})
 
@@ -99,8 +107,9 @@ def pesquisar(request):
 
         return render(request, 'pesquisar.html', {'resultados': resultados})
 
-    # Se não for GET nem POST, retorna erro
-    return JsonResponse({'error': 'Método não permitido'}, status=405)
+    # Se não for GET, retorna erro
+    else:
+        return JsonResponse({'error': 'Método não permitido'}, status=405)
 
 
 
@@ -157,30 +166,50 @@ class LogoutWithGet(LogoutView):
         return self.post(*args, **kwargs)
 
 
-@login_required 
+@login_required
 def categoria_brinquedos(request):
     itens = Doacao.objects.filter(category='toy')
-    return render(request, 'categoria_brinquedos.html', {'resultados': itens})
+    itens_favoritados_ids = request.user.favoritos.values_list('doacao_id', flat=True)
+    return render(request, 'categoria_brinquedos.html', {
+        'resultados': itens,
+        'itens_favoritados_ids': list(itens_favoritados_ids)
+    })
 
-@login_required 
+@login_required
 def categoria_eletronicos(request):
     itens = Doacao.objects.filter(category='electronics')
-    return render(request, 'categoria_eletronicos.html', {'resultados': itens})
+    itens_favoritados_ids = request.user.favoritos.values_list('doacao_id', flat=True)
+    return render(request, 'categoria_eletronicos.html', {
+        'resultados': itens,
+        'itens_favoritados_ids': list(itens_favoritados_ids)
+    })
 
-@login_required 
+@login_required
 def categoria_livros(request):
     itens = Doacao.objects.filter(category='book')
-    return render(request, 'categoria_livros.html', {'resultados': itens})
+    itens_favoritados_ids = request.user.favoritos.values_list('doacao_id', flat=True)
+    return render(request, 'categoria_livros.html', {
+        'resultados': itens,
+        'itens_favoritados_ids': list(itens_favoritados_ids)
+    })
 
-@login_required 
+@login_required
 def categoria_moveis(request):
     itens = Doacao.objects.filter(category='furniture')
-    return render(request, 'categoria_moveis.html', {'resultados': itens})
+    itens_favoritados_ids = request.user.favoritos.values_list('doacao_id', flat=True)
+    return render(request, 'categoria_moveis.html', {
+        'resultados': itens,
+        'itens_favoritados_ids': list(itens_favoritados_ids)
+    })
 
-@login_required 
+@login_required
 def categoria_roupas(request):
     itens = Doacao.objects.filter(category='clothes')
-    return render(request, 'categoria_roupas.html', {'resultados': itens})
+    itens_favoritados_ids = request.user.favoritos.values_list('doacao_id', flat=True)
+    return render(request, 'categoria_roupas.html', {
+        'resultados': itens,
+        'itens_favoritados_ids': list(itens_favoritados_ids)
+    })
 
 
 @login_required
@@ -248,11 +277,15 @@ def fazendo_avaliacao(request, item_id):  # Usando item_id conforme sua URL
 @login_required
 def descricao_item(request, item_id):
     item = get_object_or_404(Doacao, pk=item_id)
+    user_info = item.donor  # Supondo que donor seja a chave estrangeira para o usuário
+    context = {
+        'item': item,
+        'user_info': user_info  # Passando informações do usuário para o template
+    }
     if request.method == 'POST':
         SolicitacaoRecebida.objects.create(doacao=item, solicitante=request.user)
-        return redirect('itens_solicitados')  # Redirecionar para uma página de confirmação ou de volta à lista de itens
-
-    return render(request, 'descricao_item.html', {'item': item})
+        return redirect('itens_solicitados')
+    return render(request, 'descricao_item.html', context)
 
 @login_required
 def excluir_doacao(request, doacao_id):
@@ -279,13 +312,29 @@ def solicitacoes_recebidas(request):
 
     return render(request, 'solicitacoes_recebidas.html', {'itens': itens})
 
-
-
+import json
 @login_required
 def favoritos(request):
-    # Obtendo todos os favoritos do usuário logado
-    favoritos = Favorito.objects.filter(usuario=request.user).select_related('doacao')
-    return render(request, 'favoritos.html', {'favoritos': favoritos})
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        item_id = data['item_id']
+        item = get_object_or_404(Doacao, id=item_id)
+
+        # Tentativa de obter um objeto Favorito existente
+        favorito, created = Favorito.objects.get_or_create(usuario=request.user, doacao=item)
+        if not created:  # Se o favorito já existe, ele deve ser excluído
+            favorito.delete()
+            favorited = False
+        else:
+            favorited = True  # Se foi criado, o item foi favoritado
+
+        return JsonResponse({'favorited': favorited})
+    else:
+        # Para requisições GET, retornar a lista de favoritos
+        favoritos = Favorito.objects.filter(usuario=request.user).select_related('doacao')
+        return render(request, 'favoritos.html', {'favoritos': favoritos})
+
+
 
 @login_required
 def descricao_minhas_doacoes(request, item_id):

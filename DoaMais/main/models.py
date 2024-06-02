@@ -61,7 +61,6 @@ class Doacao(models.Model):
     donor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='doacoes')
     location = models.CharField(max_length=255)
 
-
     def __str__(self):
         return f"{self.item_name} - {self.category}"
 

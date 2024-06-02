@@ -1,119 +1,97 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-
+/* Estilos globais */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding-top: 40px; /* Adjust padding to set form-container at the top */
+  padding: 0;
   background-color: white;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Aligns items to the top */
-  min-height: 100vh; /* Full height of the viewport */
+  align-items: center; /* Alinha verticalmente ao centro */
+  flex-direction: column; /* Organiza os elementos em coluna */
+  min-height: 100vh;
 }
 
+/* Estiliza o container do formulário */
 .form-container {
-  width: 90%; /* Adjust width as needed */
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  margin-top: 75px;
+  width: 80%; /* Largura ajustada para ocupar menos espaço */
+  margin-top: 20px; /* Espaço no topo reduzido de 40px para 20px para subir a barra */
+  display: flex; /* Mantém o uso de flexbox */
+  flex-direction: column; /* Elementos internos em coluna */
+  align-items: center; /* Centraliza horizontalmente */
 }
 
+/* Estiliza o formulário dentro do container */
+.form-container form {
+  display: flex; /* Usa flexbox */
+  flex-direction: row; /* Elementos em linha */
+  justify-content: space-evenly; /* Distribuição uniforme */
+  width: 100%; /* Ocupa a largura total */
+}
+
+/* Estiliza a linha dentro do formulário */
 .row {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
-  gap: 20px; /* Spacing between elements */
+  flex-direction: row;
+  justify-content: center; /* Centraliza os elementos */
+  width: 100%;
+}
+
+/* Estilizações dos campos de entrada e botões */
+.input-group input,
+.input-group select,
+.input-group button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  color: black;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  width: calc(25% - 20px); /* Adjust the width as needed, subtracting gap */
-}
-
-.input-group label {
-  margin-bottom: 5px;
-}
-
-.input-group input,
-.input-group select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.input-group button {
-  padding: 10px 20px; /* Adjust padding to match the example */
-  background: #6c757d; /* Background color from the example */
-  color: #fff; /* Text color from the example */
-  border: none; /* No border */
-  cursor: pointer;
-  border-radius: 5px; /* Border radius from the example */
-  font-size: 16px; /* Font size from the example */
+    display: flex;
+    flex-direction: column;
+    width: calc(25% - 20px); /* Adjust the width as needed, subtracting gap */
+    margin: 10px;
 }
 
 .input-group button:hover {
-  background: #5a6268; /* Hover color from the example */
+  background-color: #888;
 }
 
-@media (max-width: 768px) {
-  .input-group {
-    width: calc(50% - 20px); /* Adjust for tablet screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .input-group {
-    width: 100%; /* Full width on mobile screens */
-  }
-}
-
+/* Estilização dos resultados de pesquisa */
 .search-results {
-  position: relative;  /* Mudança de absolute para relative */
-  width: 90%;  /* Definindo a largura para conter os itens */
-  margin: 20px auto;  /* Centralizando e adicionando espaço ao redor */
+  width: 80%; /* Ajusta a largura */
+  margin-top: 20px; /* Espaço entre o formulário e os resultados */
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;  /* Garante espaçamento uniforme */
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
+/* Estilização de cada item de pesquisa */
 .search-item {
-  flex-basis: calc(25% - 20px); /* Ajuste para quatro itens por linha, considerando o espaçamento */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Para posicionar a estrela absolutamente dentro deste container */
+  width: 23%;
+  margin: 10px;
+  text-align: left;
 }
 
 .search-item img {
   width: 100%;
-  height: auto;
-  margin-bottom: 5px; /* Reduz o espaço para o texto */
+  height: 300px; /* Ajusto a altura da imagem */
+  object-fit: cover;
 }
 
-.search-item div {
-  text-align: center;
-  width: 100%; /* Garante que o texto ocupe todo o espaço horizontal */
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
-.search-item p {
-  margin: 5px 0;
-  font-size: 14px;
+.star-rating {
+  color: grey;
+  cursor: pointer;
+  font-size: 30px; /* Aumento do tamanho da fonte das estrelas */
 }
 
-.favorite-icon {
-  position: absolute;
-  bottom: 5px;  /* Posiciona a estrela perto do fundo do container */
-  right: 10px;  /* Mantém a estrela à direita */
-  width: 24px;  /* Tamanho da estrela */
-  height: 24px;
-  cursor: pointer; /* Indica que é clicável */
+.star-rating.selected {
+  color: yellow;
 }
