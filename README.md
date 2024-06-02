@@ -119,13 +119,18 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 
 ##Quadro da Sprint 01:
 
-![quadro sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d5e34cd9-1660-4395-bedf-90c88291c1dd)
+![Captura de tela 2024-04-08 223112](https://github.com/marimmbc/doamais/assets/84236149/0722bf53-48e7-41e3-a60e-a288df8fb029)
+
+![Captura de tela 2024-04-08 223100](https://github.com/marimmbc/doamais/assets/84236149/24140a7c-1b19-49be-a097-ee13a8374f72)
+
 
 ## Backlog:
-![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/44730de5-ff2a-499d-a081-09aeb42deb34)
+![Captura de tela 2024-04-08 223126](https://github.com/marimmbc/doamais/assets/84236149/cb1f3421-49ed-4a00-9fdf-f429bd0b535b)
 
-![backlog sprint 1 entrega 2](https://github.com/marimmbc/doamais/assets/84236149/d395ad6c-2de9-4c7d-9b29-dfa515567ac0)
+![Captura de tela 2024-04-08 223135](https://github.com/marimmbc/doamais/assets/84236149/1ac1519e-4a46-4174-b8c8-7f77af0568f5)
+
+
 
 ## Screencast:
-https://github.com/marimmbc/doamais/assets/84236149/ec0938d1-cfb6-478f-9698-d9f799d75848
 
+https://github.com/marimmbc/doamais/assets/84236149/dafd3844-9436-463b-bf6c-74b76985b6a1
