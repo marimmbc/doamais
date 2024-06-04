@@ -151,4 +151,11 @@ https://github.com/marimmbc/doamais/assets/84236149/dafd3844-9436-463b-bf6c-74b7
 
 https://github.com/marimmbc/doamais/assets/84236149/32c3dc7b-da50-49c7-94f1-190a5a6af3c8
 
+## Screencast Lo-Fi
+
+https://github.com/marimmbc/doamais/assets/84236149/c45eb7d8-e741-4b39-b5d3-da25e480e9f2
+
+
+
+
 
