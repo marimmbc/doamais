@@ -156,6 +156,10 @@ https://github.com/marimmbc/doamais/assets/84236149/32c3dc7b-da50-49c7-94f1-190a
 https://github.com/marimmbc/doamais/assets/84236149/c45eb7d8-e741-4b39-b5d3-da25e480e9f2
 
 
+## Diagrama de Atividades
+
+![diagrama de atividades doamais entrega 4](https://github.com/marimmbc/doamais/assets/84236149/5f9c214b-014b-4bd6-af2d-a44870c4b290)
+
 
 
 
