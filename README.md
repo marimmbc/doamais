@@ -134,3 +134,12 @@ https://github.com/marimmbc/doamais/assets/84236149/296b8af4-6575-43ed-ad37-b916
 ## Screencast:
 
 https://github.com/marimmbc/doamais/assets/84236149/dafd3844-9436-463b-bf6c-74b76985b6a1
+
+
+# Entrega 4
+
+## Backlog do Jira:
+
+![Captura de tela 2024-06-04 150305](https://github.com/marimmbc/doamais/assets/84236149/1ed79da1-9030-46a8-9b13-7e4618a91116)
+
+![Captura de tela 2024-06-04 150319](https://github.com/marimmbc/doamais/assets/84236149/b8e55dd1-f354-4888-8afe-6de34b583645)
