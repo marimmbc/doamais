@@ -13,7 +13,7 @@ class UserProfile(models.Model):
         return self.user.username
     
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, first_name=None, last_name=None, location=None, **extra_fields):
+    def create_user(self, email, username, password=None, first_name=None, last_name=None, **extra_fields):
         if not email:
             raise ValueError('The given email must be set')
         if not username:
@@ -24,7 +24,6 @@ class MyUserManager(BaseUserManager):
             username=username,
             first_name=first_name,
             last_name=last_name,
-            location=location,
             **extra_fields
         )
 

@@ -29,9 +29,7 @@ def cadastrar(request):
                     username=username,
                     email=email,
                     password=password1,
-                    first_name=request.POST.get('first_name'),
-                    last_name=request.POST.get('last_name'),
-                    location=request.POST.get('location')
+                    
                 )
                 user.save()
                 user = authenticate(username=username, password=password1)
@@ -173,6 +171,11 @@ def editar_doacao(request, doacao_id):
         return redirect('minhas_doacoes')
 
     return render(request, 'editar_doacao.html', {'doacao': doacao})
+
+
+def descricao_minhas_doacoes(request, item_id):
+    item = get_object_or_404(Doacao, id=item_id)
+    return render(request, 'descricao_doacao.html', {'item': item})
 
 class LogoutWithGet(LogoutView):
     def get(self, *args, **kwargs):
@@ -346,6 +349,7 @@ def fazendo_avaliacao(request, item_id):
         )
         avaliacao.save()
         messages.success(request, 'Avaliação realizada com sucesso!')
+        print("Redirecionando para /avaliacoes")
         return redirect('avaliacoes')
 
     return render(request, 'fazendo_avaliacao.html', {'doacao': doacao, 'stars_range': stars_range})

@@ -50,3 +50,17 @@ input[type="radio"]:checked + label,
 input[type="radio"]:hover + label {
     color: yellow; /* Muda a cor das estrelas para amarelo quando selecionadas ou em hover */
 }
+
+.buttons button {
+    background: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.buttons button:hover {
+    background: #5a6268;
+}

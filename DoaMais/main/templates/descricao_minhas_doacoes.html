@@ -20,6 +20,7 @@
     <p><strong>Estado de Conservação:</strong> {{ item.get_condition_display }}</p>
     <p><strong>Descrição:</strong> {{ item.description }}</p>
     <button onclick="history.back()">Voltar</button>
+    <a href="{% url 'editar_doacao' item.id %}" class="edit-button">Editar</a>
   </div>
   <script src="{% static 'js/loadNavbar.js' %}"></script>
 </body>
